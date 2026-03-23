@@ -1,5 +1,5 @@
 ---
-last_updated: 2026-03-21
+last_updated: 2026-03-23
 status: 學習中
 tier: 1
 ---
@@ -49,5 +49,7 @@ def two_sum_sorted(nums: list[int], target: int) -> list[int]:
 |------|------|---------|---------|
 | LC 1 Two Sum | Easy | Hash map 更快，但 sorted 版用 two pointers | 已掌握 |
 | LC 15 3Sum | Medium | 去重 + 排序 + two pointers | 需複習 |
-| LC 11 Container With Most Water | Medium | 移動較短的那邊 | 未開始 |
-| LC 42 Trapping Rain Water | Hard | 左右最高牆 | 未開始 |
+| LC 283 Move Zeroes | Easy | 讀寫指標，一趟掃完 | 已掌握 |
+| LC 75 Sort Colors | Medium | 三指標 partition (Dutch National Flag) | 已掌握 |
+| LC 11 Container With Most Water | Medium | 移動較短的那邊 | 已掌握 |
+| LC 42 Trapping Rain Water | Hard | 兩端夾，小 max 那邊先處理，水量已確定 | 已掌握 |

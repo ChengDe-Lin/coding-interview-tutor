@@ -10,7 +10,7 @@ last_updated: 2026-03-21
 
 | Pattern | 狀態 | 上次學習 | 關聯題數 | 筆記連結 |
 |---------|------|---------|---------|---------|
-| Two Pointers | 未開始 | — | 0 | — |
+| Two Pointers | 學習中 | 2026-03-23 | 4 | [筆記](patterns/two_pointers.md) |
 | Sliding Window | 未開始 | — | 0 | — |
 | Binary Search | 未開始 | — | 0 | — |
 | BFS / DFS | 未開始 | — | 0 | — |
