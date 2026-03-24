@@ -1,43 +1,71 @@
 """
-LC 153 - Find Minimum in Rotated Sorted Array
+LC 236 - Lowest Common Ancestor of a Binary Tree
 
-Input:  nums: List[int] — rotated sorted array, no duplicates
-Output: int — the minimum element
+Input:  root: TreeNode, p: TreeNode, q: TreeNode
+Output: TreeNode — the lowest common ancestor of p and q
 
 Example:
-  Input:  [3,4,5,1,2]
-  Output: 1
+        3
+       / \
+      5   1
+     / \ / \
+    6  2 0  8
+      / \
+     7   4
 
-  Input:  [4,5,6,7,0,1,2]
-  Output: 0
+  p=5, q=1 → 3
+  p=5, q=4 → 5
 
 Constraints:
-  - 1 <= len(nums) <= 5000
-  - -5000 <= nums[i] <= 5000
-  - All values are unique
-  - nums was sorted ascending then rotated 1 to n times
+  - Number of nodes in [2, 10^5]
+  - All node values are unique
+  - p != q
+  - p and q both exist in the tree
 """
 
-from typing import List
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 
-def find_min(nums: List[int]) -> int:
-    left, right = 0, len(nums) - 1
-    while left < right:
-      mid = (left + right) // 2
-      if nums[mid] > nums[right]:
-        left  = mid + 1
-      else:
-        right = mid
-    return nums[left]
-
+def lowest_common_ancestor(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+    def dfs(node):
+      if node.val == p.val or node.val == q.val:
+        return node
+      
+      left = dfs(node.left)
+      right = dfs(node.right)
+      if left and right:
+        return node
+      return left or right
+    return dfs(root)
 
 # --- Tests ---
 if __name__ == "__main__":
-    assert find_min([3,4,5,1,2]) == 1
-    assert find_min([4,5,6,7,0,1,2]) == 0
-    assert find_min([11,13,15,17]) == 11
-    assert find_min([2,1]) == 1
-    assert find_min([1]) == 1
-    assert find_min([3,1,2]) == 1
+    # Build tree:       3
+    #                  / \
+    #                 5   1
+    #                / \ / \
+    #               6  2 0  8
+    #                 / \
+    #                7   4
+    n7 = TreeNode(7)
+    n4 = TreeNode(4)
+    n2 = TreeNode(2, n7, n4)
+    n6 = TreeNode(6)
+    n5 = TreeNode(5, n6, n2)
+    n0 = TreeNode(0)
+    n8 = TreeNode(8)
+    n1 = TreeNode(1, n0, n8)
+    n3 = TreeNode(3, n5, n1)
+
+    assert lowest_common_ancestor(n3, n5, n1) == n3
+    assert lowest_common_ancestor(n3, n5, n4) == n5
+    assert lowest_common_ancestor(n3, n6, n4) == n5
+    assert lowest_common_ancestor(n3, n7, n8) == n3
+    assert lowest_common_ancestor(n3, n0, n8) == n1
+
     print("All passed!")

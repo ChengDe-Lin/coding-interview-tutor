@@ -13,7 +13,7 @@ last_updated: 2026-03-21
 | Two Pointers | 學習中 | 2026-03-23 | 4 | [筆記](patterns/two_pointers.md) |
 | Sliding Window | 未開始 | — | 0 | — |
 | Binary Search | 學習中 | 2026-03-24 | 2 | [筆記](patterns/binary_search.md) |
-| BFS / DFS | 未開始 | — | 0 | — |
+| BFS / DFS | 學習中 | 2026-03-24 | 2 | [筆記](patterns/bfs_dfs.md) |
 | Dynamic Programming (1D) | 未開始 | — | 0 | — |
 | Hash Map Patterns | 未開始 | — | 0 | — |
 | Stack / Monotonic Stack | 未開始 | — | 0 | — |
