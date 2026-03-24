@@ -1,42 +1,43 @@
 """
-LC 42 - Trapping Rain Water
+LC 153 - Find Minimum in Rotated Sorted Array
 
-Input:  height: List[int] — array of non-negative integers representing bar heights
-Output: int — total units of trapped rain water
+Input:  nums: List[int] — rotated sorted array, no duplicates
+Output: int — the minimum element
 
 Example:
-  Input:  [0,1,0,2,1,0,1,3,2,1,2,1]
-  Output: 6
+  Input:  [3,4,5,1,2]
+  Output: 1
+
+  Input:  [4,5,6,7,0,1,2]
+  Output: 0
 
 Constraints:
-  - 1 <= len(height) <= 2 * 10^4
-  - 0 <= height[i] <= 10^5
+  - 1 <= len(nums) <= 5000
+  - -5000 <= nums[i] <= 5000
+  - All values are unique
+  - nums was sorted ascending then rotated 1 to n times
 """
 
 from typing import List
 
 
-def trap(height: List[int]) -> int:
-    left, right = 0, len(height) - 1
-    leftMax, rightMax = height[left], height[right]
-    water = 0
+def find_min(nums: List[int]) -> int:
+    left, right = 0, len(nums) - 1
     while left < right:
-      if leftMax < rightMax:
-        left += 1
-        leftMax = max(leftMax, height[left])
-        water += leftMax - height[left]
+      mid = (left + right) // 2
+      if nums[mid] > nums[right]:
+        left  = mid + 1
       else:
-        right -= 1
-        rightMax = max(rightMax, height[right])
-        water += rightMax - height[right]
-    return water
+        right = mid
+    return nums[left]
+
 
 # --- Tests ---
 if __name__ == "__main__":
-    assert trap([0,1,0,2,1,0,1,3,2,1,2,1]) == 6
-    assert trap([4,2,0,3,2,5]) == 9
-    assert trap([1,0,1]) == 1
-    assert trap([3,0,0,2,0,4]) == 10
-    assert trap([0]) == 0
-    assert trap([1,2,3,4,5]) == 0
+    assert find_min([3,4,5,1,2]) == 1
+    assert find_min([4,5,6,7,0,1,2]) == 0
+    assert find_min([11,13,15,17]) == 11
+    assert find_min([2,1]) == 1
+    assert find_min([1]) == 1
+    assert find_min([3,1,2]) == 1
     print("All passed!")
