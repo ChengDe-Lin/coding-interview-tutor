@@ -78,5 +78,9 @@ def dfs(grid, i, j):
 |------|------|---------|---------|
 | LC 200 Number of Islands | Medium | Grid DFS，沉島技巧 | 已掌握 |
 | LC 236 Lowest Common Ancestor | Medium | DFS 回傳值設計，base case 別忘 | 學習中 |
-| LC 102 Binary Tree Level Order Traversal | Medium | BFS 模板 | 未做 |
+| LC 102 Binary Tree Level Order Traversal | Medium | BFS 模板 | 已掌握 |
+| LC 994 Rotting Oranges | Medium | Multi-source BFS，所有起點同時入 queue，enqueue 時標記 visited | 已掌握 |
+| LC 199 Binary Tree Right Side View | Medium | BFS level-order，每層最後一個值 | 已掌握 |
+| LC 695 Max Area of Island | Medium | Grid DFS + 沉島 + return count | 已掌握 |
+| LC 124 Binary Tree Maximum Path Sum | Hard | DFS 回傳單臂最大值，nonlocal 追蹤跨子樹全域最大 | 已掌握 |
 | LC 133 Clone Graph | Medium | BFS/DFS + hash map | 未做 |

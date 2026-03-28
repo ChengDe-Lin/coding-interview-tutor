@@ -1,5 +1,5 @@
 ---
-last_updated: 2026-03-21
+last_updated: 2026-03-27
 ---
 
 # Coding Interview Roadmap
@@ -10,13 +10,13 @@ last_updated: 2026-03-21
 
 | Pattern | 狀態 | 上次學習 | 關聯題數 | 筆記連結 |
 |---------|------|---------|---------|---------|
-| Two Pointers | 學習中 | 2026-03-23 | 4 | [筆記](patterns/two_pointers.md) |
-| Sliding Window | 未開始 | — | 0 | — |
-| Binary Search | 學習中 | 2026-03-24 | 2 | [筆記](patterns/binary_search.md) |
-| BFS / DFS | 學習中 | 2026-03-24 | 2 | [筆記](patterns/bfs_dfs.md) |
-| Dynamic Programming (1D) | 未開始 | — | 0 | — |
+| Two Pointers | 需複習 | 2026-03-25 | 6 | [筆記](patterns/two_pointers.md) |
+| Sliding Window | 學習中 | 2026-03-27 | 6 | [筆記](patterns/sliding_window.md) |
+| Binary Search | 學習中 | 2026-03-27 | 4 | [筆記](patterns/binary_search.md) |
+| BFS / DFS | 學習中 | 2026-03-27 | 8 | [筆記](patterns/bfs_dfs.md) |
+| Dynamic Programming (1D) | 學習中 | 2026-03-27 | 0 | [筆記](patterns/dp_1d.md) |
 | Hash Map Patterns | 未開始 | — | 0 | — |
-| Stack / Monotonic Stack | 未開始 | — | 0 | — |
+| Stack / Monotonic Stack | 學習中 | 2026-03-27 | 2 | [筆記](patterns/stack_monotonic.md) |
 | Heap / Priority Queue | 未開始 | — | 0 | — |
 | Backtracking | 未開始 | — | 0 | — |
 | Sorting + Greedy | 未開始 | — | 0 | — |

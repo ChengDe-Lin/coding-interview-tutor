@@ -1,6 +1,6 @@
 ---
 last_updated: 2026-03-23
-status: 學習中
+status: 需複習
 tier: 1
 ---
 

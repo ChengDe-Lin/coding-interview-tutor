@@ -62,6 +62,6 @@ while left < right:
 | 題目 | 難度 | 關鍵考點 | 我的狀態 |
 |------|------|---------|---------|
 | LC 704 Binary Search | Easy | 基本搜尋 | 已掌握 |
-| LC 34 Find First and Last Position | Medium | 左右邊界 | 未做 |
+| LC 34 Find First and Last Position | Medium | 左右邊界，right 初始值要 len(nums) 不是 len(nums)-1 | 已掌握 |
 | LC 875 Koko Eating Bananas | Medium | Binary Search on Answer，搜尋空間 [1, max(piles)] | 已掌握 |
 | LC 153 Find Minimum in Rotated Sorted Array | Medium | `nums[mid] > nums[right]` → 最小值在右邊，否則在左邊（含 mid） | 已掌握 |

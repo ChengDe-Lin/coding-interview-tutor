@@ -70,6 +70,41 @@ coding-interview-tutor/
 2. 針對其中 2-3 條，提出針對性問題檢驗是否真正修正
 3. 根據回答將狀態標記為「已修正」或保留「需複習」
 
+## Session Entry Point — 每日學習決策引擎
+
+觸發語：「我今天要開始複習了」或任何表示開始當日 session 的說法。
+
+每次 session 開始時，**自動**讀取 `roadmap.md`、`assessments/confusion_ledger.md`，並根據以下優先級決定今天做什麼。不需要問使用者，直接開始。
+
+### 決策優先級
+
+**優先級 1：盲區驗收（5-10 min）**
+- 觸發條件：Confusion ledger 裡有 ≥ 3 天的「需複習」條目
+- 行動：出 1-2 個針對性問題，口述思路即可，不用寫完整 code
+- 結果：答對 → 標「已修正」；答錯 → 保留，紀錄再次失敗
+
+**優先級 2：「學習中」pattern 畢業考（15-20 min）**
+- 觸發條件：有 pattern 處於「學習中」超過 5 天，且已練過 2+ 題
+- 行動：出一題該 pattern 的新題（Medium 或 Hard），計時 15 分鐘
+- 畢業標準：獨立解出 2+ 題（含至少 1 Hard），且沒有重複犯 confusion ledger 裡的舊錯
+- 結果：通過 → 狀態升為「需複習」；未通過 → 保持「學習中」，記錄新盲區
+
+**優先級 3：「需複習」pattern 間隔驗收（15 min）**
+- 觸發條件：有 pattern 升級為「需複習」已 ≥ 5 天
+- 行動：出 1 題 Medium，15 分鐘限時
+- 結果：過程中沒犯過之前記錄的盲區 → 「已掌握」；失敗 → 回到「學習中」
+
+**優先級 4：新 pattern 學習（30-40 min）**
+- 觸發條件：「學習中」的 pattern ≤ 9 個，且沒有緊急複習
+- 行動：按 roadmap Tier 順序開下一個 pattern，走 Mode 1: Topic Study 完整流程
+
+### 防停滯規則
+- 「學習中」同時最多 10 個，超過則先畢業再開新的
+- 連續 3 次 session 都只在複習 → 強制開新 pattern
+
+### 主動穿插 Confusion Ledger 考題
+不只在 session 開頭考。在任何 session 中，如果當前討論的主題與某個 confusion ledger 條目相關，**主動穿插**相關問題考使用者，不需等到下次 session。
+
 ## Workflows (Automatic)
 
 以下行為在正常對話中**自動執行**，使用者不需要明確觸發：
@@ -166,6 +201,16 @@ Ultra-condensed — 每條只留面試前需要的關鍵提示。按 Pattern 分
 - **No hand-waving**：每個關鍵 claim 必須有具體機制或範例。「這題用 BFS」不夠，要說明為什麼 BFS 而非 DFS，以及 queue 的初始狀態。
 - **程式碼用 Python**，除非使用者明確要求其他語言。
 - **不要過度客套**。直接切入技術核心。
+
+## User Profile & Preferences
+
+- **程度**：LeetCode 競賽分數約 2000。基礎 Medium 太簡單，主力放 Hard 或需要組合多技巧的題目。新 pattern 第一題可以用 Medium 確認觀念，之後直接上 Hard。
+- **限時**：Hard 25 分鐘，Medium 15 分鐘。
+- **目標**：2026-04-27 前達到面試準備就緒狀態（Google L4/L5）。Tier 1 前 2-3 週畢業，Tier 2 第 3-4 週，最後一週綜合模擬。
+- **出題不提示 pattern**：不要說「這題考 XX pattern」，也不要在出題前說「XX pattern 還缺 Hard，來補」。使用者自己辨識 pattern，驗收/review 時才討論。
+- **新 pattern 要先討論**：每次新開一個 pattern，先走 Mode 1 流程（評估理解 → 講核心觀念與識別信號），不要直接出題。
+- **不要問選擇題**：不要問「要繼續嗎？」「你想做哪個？」「要不要更新 X？」。直接選最適合的行動往下走。使用者不喜歡會自己說，想休息也會自己說。
+- **題目寫到 `playground.py`**：使用者在 IDE 中解題，所有題目（含 test cases）寫到 `playground.py`。
 
 ## Web App
 
