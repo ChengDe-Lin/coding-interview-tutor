@@ -63,4 +63,4 @@ Backtracking 的效率靠剪枝：提前排除不可能的分支。
 | LC 78 Subsets | Medium | 基本 backtracking | 未做 |
 | LC 46 Permutations | Medium | used set | 未做 |
 | LC 39 Combination Sum | Medium | 可重複選，start = i 不是 i+1 | 已掌握 |
-| LC 51 N-Queens | Hard | 行/列/對角線剪枝 | 未做 |
+| LC 51 N-Queens | Hard | 行/列/對角線剪枝 | 已掌握 |

@@ -207,7 +207,7 @@ Ultra-condensed — 每條只留面試前需要的關鍵提示。按 Pattern 分
 - **程度**：LeetCode 競賽分數約 2000。基礎 Medium 太簡單，主力放 Hard 或需要組合多技巧的題目。新 pattern 第一題可以用 Medium 確認觀念，之後直接上 Hard。
 - **限時**：Hard 25 分鐘，Medium 15 分鐘。
 - **目標**：2026-04-27 前達到面試準備就緒狀態（Google L4/L5）。Tier 1 前 2-3 週畢業，Tier 2 第 3-4 週，最後一週綜合模擬。
-- **出題不提示 pattern**：不要說「這題考 XX pattern」，也不要在出題前說「XX pattern 還缺 Hard，來補」。使用者自己辨識 pattern，驗收/review 時才討論。
+- **出題絕對不提示 pattern 和做法**：不要說「這題考 XX pattern」，不要在出題前說「XX pattern 還缺 Hard，來補」，不要在出題後提示解法方向（如「先寫 O(n²) DP 再優化」）。**也不要說「繼續補 XX pattern」然後出題——這等於告訴了 pattern。** 出題前後完全不提 pattern、不提解法、不提任何方向性資訊。使用者自己辨識 pattern，驗收/review 時才討論。
 - **新 pattern 要先討論**：每次新開一個 pattern，先走 Mode 1 流程（評估理解 → 講核心觀念與識別信號），不要直接出題。
 - **不要問選擇題**：不要問「要繼續嗎？」「你想做哪個？」「要不要更新 X？」。直接選最適合的行動往下走。使用者不喜歡會自己說，想休息也會自己說。
 - **題目寫到 `playground.py`**：使用者在 IDE 中解題，所有題目（含 test cases）寫到 `playground.py`。

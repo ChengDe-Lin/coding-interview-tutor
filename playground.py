@@ -1,51 +1,64 @@
 """
-LC 56 - Merge Intervals (Medium)
+LC 322 - Coin Change (Medium)
 
-Given an array of intervals where intervals[i] = [start_i, end_i], merge
-all overlapping intervals, and return an array of the non-overlapping
-intervals that cover all the intervals in the input.
+You are given an integer array coins representing coins of different
+denominations and an integer amount representing a total amount of money.
 
-Input:  intervals: List[List[int]]
-Output: List[List[int]]
+Return the fewest number of coins that you need to make up that amount.
+If that amount of money cannot be made up by any combination of the coins,
+return -1.
+
+You may assume that you have an infinite number of each kind of coin.
+
+Input:  coins: List[int], amount: int
+Output: int
 
 Examples:
-  Input:  intervals = [[1,3],[2,6],[8,10],[15,18]]
-  Output: [[1,6],[8,10],[15,18]]
+  Input:  coins = [1,2,5], amount = 11
+  Output: 3          # 5 + 5 + 1
 
-  Input:  intervals = [[1,4],[4,5]]
-  Output: [[1,5]]
+  Input:  coins = [2], amount = 3
+  Output: -1
+
+  Input:  coins = [1], amount = 0
+  Output: 0
 
 Constraints:
-  - 1 <= len(intervals) <= 10^4
-  - intervals[i].length == 2
-  - 0 <= start_i <= end_i <= 10^4
+  - 1 <= len(coins) <= 12
+  - 1 <= coins[i] <= 2^31 - 1
+  - 0 <= amount <= 10^4
 """
 
 from typing import List
 
 
-def merge(intervals: List[List[int]]) -> List[List[int]]:
+def coinChange(coins: List[int], amount: int) -> int:
     # your code here
-    res = []
-    intervals.sort()
-    for start, end in intervals:
-        if not res:
-            res.append([start, end])
-            continue
-        if res[-1][1] >= start:
-            res[-1][1] = max(end, res[-1][1])
-        else:
-            res.append([start, end])
-    return res
+    if not amount:
+        return 0
+    coins.sort()
+    dp = [float("inf")] * (amount + 1)
+    # init dp
+    for coin in coins:
+        if coin <= amount:
+            dp[coin] = 1
+    for i in range(1, amount + 1):
+        for coin in coins:
+            if i - coin <= 0:
+                break
+            dp[i] = min(dp[i], dp[i - coin] + 1)
+    if dp[-1] == float("inf"):
+        return -1
+    return dp[-1]
 
 
 # --- Tests ---
 if __name__ == "__main__":
-    assert merge([[1, 3], [2, 6], [8, 10], [15, 18]]) == [[1, 6], [8, 10], [15, 18]]
-    assert merge([[1, 4], [4, 5]]) == [[1, 5]]
-    assert merge([[1, 4], [2, 3]]) == [[1, 4]]
-    assert merge([[1, 4], [0, 4]]) == [[0, 4]]
-    assert merge([[1, 1]]) == [[1, 1]]
-    assert merge([[1, 4], [0, 0]]) == [[0, 0], [1, 4]]
-    assert merge([[2, 3], [4, 5], [6, 7], [8, 9], [1, 10]]) == [[1, 10]]
+    assert coinChange([1, 2, 5], 11) == 3
+    assert coinChange([2], 3) == -1
+    assert coinChange([1], 0) == 0
+    assert coinChange([1], 1) == 1
+    assert coinChange([1], 2) == 2
+    assert coinChange([1, 2147483647], 2) == 2
+    assert coinChange([186, 419, 83, 408], 6249) == 20
     print("All passed!")

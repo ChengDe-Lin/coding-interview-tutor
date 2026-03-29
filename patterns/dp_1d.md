@@ -92,7 +92,7 @@ return prev1
 |------|------|---------|---------|
 | LC 198 House Robber | Medium | 選或不選 | 未做 |
 | LC 300 Longest Increasing Subsequence | Medium | O(n²) DP + O(n log n) tails + bisect 優化 | 已掌握 |
-| LC 322 Coin Change | Medium | 完全背包 | 未做 |
+| LC 322 Coin Change | Medium | 完全背包，dp[0]=0 就夠不需要額外初始化 dp[coin]=1 | 已掌握 |
 | LC 139 Word Break | Medium | 字串切割 DP，dp[i]=s[0:i] 可否被分割 | 已掌握 |
 | LC 152 Maximum Product Subarray | Medium | 同時追蹤 max 和 min（負負得正） | 已掌握 |
 | LC 91 Decode Ways | Medium | 類 Fibonacci，兩位數要檢查 10-26 不是只 ≤26 | 已掌握 |
