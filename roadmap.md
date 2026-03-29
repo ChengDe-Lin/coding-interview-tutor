@@ -14,12 +14,12 @@ last_updated: 2026-03-27
 | Sliding Window | 學習中 | 2026-03-27 | 6 | [筆記](patterns/sliding_window.md) |
 | Binary Search | 學習中 | 2026-03-27 | 4 | [筆記](patterns/binary_search.md) |
 | BFS / DFS | 學習中 | 2026-03-27 | 8 | [筆記](patterns/bfs_dfs.md) |
-| Dynamic Programming (1D) | 學習中 | 2026-03-27 | 0 | [筆記](patterns/dp_1d.md) |
-| Hash Map Patterns | 未開始 | — | 0 | — |
+| Dynamic Programming (1D) | 學習中 | 2026-03-28 | 5 | [筆記](patterns/dp_1d.md) |
+| Hash Map Patterns | 學習中 | 2026-03-28 | 0 | [筆記](patterns/hash_map.md) |
 | Stack / Monotonic Stack | 學習中 | 2026-03-27 | 2 | [筆記](patterns/stack_monotonic.md) |
-| Heap / Priority Queue | 未開始 | — | 0 | — |
-| Backtracking | 未開始 | — | 0 | — |
-| Sorting + Greedy | 未開始 | — | 0 | — |
+| Heap / Priority Queue | 學習中 | 2026-03-28 | 0 | [筆記](patterns/heap_pq.md) |
+| Backtracking | 學習中 | 2026-03-28 | 0 | [筆記](patterns/backtracking.md) |
+| Sorting + Greedy | 學習中 | 2026-03-28 | 0 | [筆記](patterns/sorting_greedy.md) |
 
 ## Tier 2 — 需要熟練
 
@@ -28,7 +28,7 @@ last_updated: 2026-03-27
 | Pattern | 狀態 | 上次學習 | 關聯題數 | 筆記連結 |
 |---------|------|---------|---------|---------|
 | Dynamic Programming (2D / Interval) | 未開始 | — | 0 | — |
-| Union Find | 未開始 | — | 0 | — |
+| Union Find | 學習中 | 2026-03-28 | 1 | [筆記](patterns/union_find.md) |
 | Trie | 未開始 | — | 0 | — |
 | Topological Sort | 未開始 | — | 0 | — |
 | Segment Tree / BIT | 未開始 | — | 0 | — |

@@ -211,6 +211,8 @@ Ultra-condensed — 每條只留面試前需要的關鍵提示。按 Pattern 分
 - **新 pattern 要先討論**：每次新開一個 pattern，先走 Mode 1 流程（評估理解 → 講核心觀念與識別信號），不要直接出題。
 - **不要問選擇題**：不要問「要繼續嗎？」「你想做哪個？」「要不要更新 X？」。直接選最適合的行動往下走。使用者不喜歡會自己說，想休息也會自己說。
 - **題目寫到 `playground.py`**：使用者在 IDE 中解題，所有題目（含 test cases）寫到 `playground.py`。
+- **Follow-up 優化**：當解法有優化空間時，用 follow-up question 問使用者（「你覺得這個能怎麼優化？」），不要直接告訴答案。模擬面試官行為。
+- **Dream companies**：Apple、Google、Microsoft、Meta、OpenAI。準備優先級圍繞這些頂級公司最佳化。
 
 ## Web App
 
