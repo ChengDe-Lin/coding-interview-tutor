@@ -29,8 +29,8 @@ last_updated: 2026-03-27
 |---------|------|---------|---------|---------|
 | Dynamic Programming (2D / Interval) | 未開始 | — | 0 | — |
 | Union Find | 學習中 | 2026-03-28 | 1 | [筆記](patterns/union_find.md) |
-| Trie | 未開始 | — | 0 | — |
-| Topological Sort | 未開始 | — | 0 | — |
+| Trie | 學習中 | 2026-03-30 | 1 | [筆記](patterns/trie.md) |
+| Topological Sort | 學習中 | 2026-03-30 | 1 | [筆記](patterns/topological_sort.md) |
 | Segment Tree / BIT | 未開始 | — | 0 | — |
 | Divide and Conquer | 未開始 | — | 0 | — |
 | Bit Manipulation | 未開始 | — | 0 | — |
@@ -43,7 +43,7 @@ last_updated: 2026-03-27
 | Pattern | 狀態 | 上次學習 | 關聯題數 | 筆記連結 |
 |---------|------|---------|---------|---------|
 | String Algorithms (KMP, Rabin-Karp) | 未開始 | — | 0 | — |
-| Shortest Path (Dijkstra, Bellman-Ford) | 未開始 | — | 0 | — |
+| Shortest Path (Dijkstra, Bellman-Ford) | 學習中 | 2026-03-30 | 1 | [筆記](patterns/shortest_path.md) |
 | Game Theory (Minimax) | 未開始 | — | 0 | — |
 | Geometry / Sweep Line | 未開始 | — | 0 | — |
 | Math & Number Theory | 未開始 | — | 0 | — |

@@ -40,7 +40,7 @@ tier: 1
 | 題目 | 難度 | 關鍵考點 | 我的狀態 |
 |------|------|---------|---------|
 | LC 56 Merge Intervals | Medium | 按 start 排序，重疊就合併 | 已掌握 |
-| LC 435 Non-overlapping Intervals | Medium | 按 end 排序，貪心選最多不重疊 | 未做 |
+| LC 435 Non-overlapping Intervals | Medium | 按 end 排序，貪心選最多不重疊 | 已掌握 |
 | LC 55 Jump Game | Medium | 維護最遠可達位置 | 未做 |
 | LC 763 Partition Labels | Medium | 記錄每個字元最後出現位置，貪心切割 | 未做 |
 | LC 621 Task Scheduler | Medium | 排序 + 數學 or greedy | 未做 |

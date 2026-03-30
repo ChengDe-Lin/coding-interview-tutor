@@ -1,64 +1,84 @@
 """
-LC 322 - Coin Change (Medium)
+LC 208 - Implement Trie (Prefix Tree) (Medium)
 
-You are given an integer array coins representing coins of different
-denominations and an integer amount representing a total amount of money.
+A trie (pronounced as "try") or prefix tree is a tree data structure used to
+efficiently store and retrieve keys in a dataset of strings. There are various
+applications of this data structure, such as autocomplete and spellchecker.
 
-Return the fewest number of coins that you need to make up that amount.
-If that amount of money cannot be made up by any combination of the coins,
-return -1.
+Implement the Trie class:
+  - Trie() Initializes the trie object.
+  - void insert(String word) Inserts the string word into the trie.
+  - boolean search(String word) Returns true if the string word is in the
+    trie (i.e., was inserted before), and false otherwise.
+  - boolean startsWith(String prefix) Returns true if there is a previously
+    inserted string word that has the prefix prefix, and false otherwise.
 
-You may assume that you have an infinite number of each kind of coin.
-
-Input:  coins: List[int], amount: int
-Output: int
-
-Examples:
-  Input:  coins = [1,2,5], amount = 11
-  Output: 3          # 5 + 5 + 1
-
-  Input:  coins = [2], amount = 3
-  Output: -1
-
-  Input:  coins = [1], amount = 0
-  Output: 0
+Input/Output:
+  Input:
+    ["Trie", "insert", "search", "search", "startsWith", "insert", "search"]
+    [[], ["apple"], ["apple"], ["app"], ["app"], ["app"], ["app"]]
+  Output:
+    [null, null, true, false, true, null, true]
 
 Constraints:
-  - 1 <= len(coins) <= 12
-  - 1 <= coins[i] <= 2^31 - 1
-  - 0 <= amount <= 10^4
+  - 1 <= word.length, prefix.length <= 2000
+  - word and prefix consist only of lowercase English letters
+  - At most 3 * 10^4 calls in total will be made to insert, search, startsWith
 """
 
-from typing import List
+
+class Node:
+    def __init__(self, c):
+        self.isWord = False
+        self.char = c
+        self.child = {}
 
 
-def coinChange(coins: List[int], amount: int) -> int:
-    # your code here
-    if not amount:
-        return 0
-    coins.sort()
-    dp = [float("inf")] * (amount + 1)
-    # init dp
-    for coin in coins:
-        if coin <= amount:
-            dp[coin] = 1
-    for i in range(1, amount + 1):
-        for coin in coins:
-            if i - coin <= 0:
-                break
-            dp[i] = min(dp[i], dp[i - coin] + 1)
-    if dp[-1] == float("inf"):
-        return -1
-    return dp[-1]
+class Trie:
+    def __init__(self):
+        self.root = Node("*")
+
+    def insert(self, word: str) -> None:
+        root = self.root
+        for c in word:
+            if c not in root.child:
+                root.child[c] = Node(c)
+            root = root.child[c]
+        root.isWord = True
+
+    def search(self, word: str) -> bool:
+        root = self.root
+        for c in word:
+            if c not in root.child:
+                return False
+            root = root.child[c]
+        return root.isWord
+
+    def startsWith(self, prefix: str) -> bool:
+        root = self.root
+        for c in prefix:
+            if c not in root.child:
+                return False
+            root = root.child[c]
+        return True
 
 
 # --- Tests ---
 if __name__ == "__main__":
-    assert coinChange([1, 2, 5], 11) == 3
-    assert coinChange([2], 3) == -1
-    assert coinChange([1], 0) == 0
-    assert coinChange([1], 1) == 1
-    assert coinChange([1], 2) == 2
-    assert coinChange([1, 2147483647], 2) == 2
-    assert coinChange([186, 419, 83, 408], 6249) == 20
+    t = Trie()
+    t.insert("apple")
+    assert t.search("apple") == True
+    assert t.search("app") == False
+    assert t.startsWith("app") == True
+    t.insert("app")
+    assert t.search("app") == True
+
+    t2 = Trie()
+    t2.insert("hello")
+    assert t2.search("hell") == False
+    assert t2.search("helloa") == False
+    assert t2.search("hello") == True
+    assert t2.startsWith("hell") == True
+    assert t2.startsWith("helloa") == False
+
     print("All passed!")

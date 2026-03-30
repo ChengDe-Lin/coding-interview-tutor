@@ -11,8 +11,8 @@
 | 2026-03-25 | Sliding Window (LC 424) | 第一直覺想用 DP 而非 Sliding Window | 看到「連續子字串」+「最長/最短滿足條件」→ 優先想 Sliding Window | 已修正 | 2026-03-26 驗收通過：LC 209 直接辨識為 sliding window |
 | 2026-03-25 | Python | 以為 `set.remove()` 找不到元素會靜默忽略 | `set.remove()` 找不到會拋 KeyError，要用 `set.discard()` 才會靜默忽略 | 已修正 | 2026-03-30 驗收通過（第二次） |
 | 2026-03-26 | Binary Search (LC 34) | lower bound 的 right 初始值用 `len(nums)-1`，導致 target 大於所有元素時無法回傳 past-end index | 搜尋空間是 `[0, n]` 而非 `[0, n-1]`，right 初始值要用 `len(nums)` | 已修正 | 2026-03-30 驗收通過 |
-| 2026-03-26 | Sliding Window (LC 567) | Fixed window 建完初始窗口後忘記檢查是否已匹配，直接開始滑動 | 初始窗口建完後要先檢查一次是否滿足條件，再開始滑 | 需複習 | Fixed window 題建完初始窗口後第一件事就是檢查 |
-| 2026-03-26 | Python (Counter/defaultdict) | 用 `defaultdict(int)` 比較時，值為 0 的 key 會影響 `==` 判斷 | `Counter` 比較時自動忽略 0 值 entry，freq map 比較優先用 `Counter` | 需複習 | 需要比較 freq map 時用 Counter 而非 defaultdict |
+| 2026-03-26 | Sliding Window (LC 567) | Fixed window 建完初始窗口後忘記檢查是否已匹配，直接開始滑動 | 初始窗口建完後要先檢查一次是否滿足條件，再開始滑 | 已修正 | 2026-03-30 驗收通過 |
+| 2026-03-26 | Python (Counter/defaultdict) | 用 `defaultdict(int)` 比較時，值為 0 的 key 會影響 `==` 判斷 | `Counter` 比較時自動忽略 0 值 entry，freq map 比較優先用 `Counter` | 已修正 | 2026-03-30 驗收通過 |
 | 2026-03-27 | Python (nonlocal) | 內層函式用 `ans = max(...)` 修改外層變數，以為 int 傳參能直接改外層 | Python int 是 immutable，要用 `nonlocal ans` 宣告才能修改外層函式的變數 | 已修正 | 2026-03-30 驗收通過 |
 | 2026-03-27 | Monotonic Stack (LC 84) | pop 時 `count += 1` 沒累加被 pop 元素的 leftCount，導致左延伸長度短算 | `count += 1 + leftCount`，被 pop 元素的左延伸要傳遞給新元素 | 已修正 | 2026-03-30 驗收通過 |
 | 2026-03-28 | LC 410 (Binary Search on Answer) | 只想到 DP 解法，沒想到可以用 BS on Answer 做到 O(n log S) | 看到「最小化最大值」或「最大化最小值」→ 第一反應想 BS on Answer。把最佳化問題轉成判定問題：「如果上限是 X，feasible 嗎？」 | 需複習 | minimax 類問題先想 BS on Answer 再想 DP |
