@@ -15,7 +15,7 @@
 | 2026-03-26 | Python (Counter/defaultdict) | 用 `defaultdict(int)` 比較時，值為 0 的 key 會影響 `==` 判斷 | `Counter` 比較時自動忽略 0 值 entry，freq map 比較優先用 `Counter` | 已修正 | 2026-03-30 驗收通過 |
 | 2026-03-27 | Python (nonlocal) | 內層函式用 `ans = max(...)` 修改外層變數，以為 int 傳參能直接改外層 | Python int 是 immutable，要用 `nonlocal ans` 宣告才能修改外層函式的變數 | 已修正 | 2026-03-30 驗收通過 |
 | 2026-03-27 | Monotonic Stack (LC 84) | pop 時 `count += 1` 沒累加被 pop 元素的 leftCount，導致左延伸長度短算 | `count += 1 + leftCount`，被 pop 元素的左延伸要傳遞給新元素 | 已修正 | 2026-03-30 驗收通過 |
-| 2026-03-28 | LC 410 (Binary Search on Answer) | 只想到 DP 解法，沒想到可以用 BS on Answer 做到 O(n log S) | 看到「最小化最大值」或「最大化最小值」→ 第一反應想 BS on Answer。把最佳化問題轉成判定問題：「如果上限是 X，feasible 嗎？」 | 需複習 | minimax 類問題先想 BS on Answer 再想 DP |
-| 2026-03-28 | DP (LC 91) | 兩位數解碼只檢查 ≤ 26，忘記檢查 ≥ 10，導致 leading zero（如 "02"）被當合法 | 兩位數合法範圍是 `10 <= x <= 26`，左邊界排除 leading zero | 需複習 | DP 轉移條件要想清楚合法範圍的兩邊 |
-| 2026-03-28 | Contest (Combination + MOD) | 用 float 除法算 C(n,k) 導致精度錯誤，用 math.comb 大整數導致 TLE | 需要 mod 時用 factorial + inverse factorial 模板（Fermat's little theorem），全程在 mod 下運算 | 需複習 | 背好 fact/inv_fact 7 行模板 |
-| 2026-03-28 | Contest (DP + Prefix Sum) | 沒想到用 prefix sum 加速「所有 ≤ v 的狀態加總」的 DP 轉移 | 當 DP 轉移是 Σ dp[v'] for v' ≤ v 時，先對上一行做 prefix sum，查詢變 O(1) | 需複習 | DP 轉移看到「範圍加總」就想 prefix sum |
+| 2026-03-28 | LC 410 (Binary Search on Answer) | 只想到 DP 解法，沒想到可以用 BS on Answer 做到 O(n log S) | 看到「最小化最大值」或「最大化最小值」→ 第一反應想 BS on Answer。把最佳化問題轉成判定問題：「如果上限是 X，feasible 嗎？」 | 已修正 | 2026-03-31 驗收通過 |
+| 2026-03-28 | DP (LC 91) | 兩位數解碼只檢查 ≤ 26，忘記檢查 ≥ 10，導致 leading zero（如 "02"）被當合法 | 兩位數合法範圍是 `10 <= x <= 26`，左邊界排除 leading zero | 已修正 | 2026-03-31 驗收通過 |
+| 2026-03-28 | Contest (Combination + MOD) | 用 float 除法算 C(n,k) 導致精度錯誤，用 math.comb 大整數導致 TLE | 需要 mod 時用 factorial + inverse factorial 模板（Fermat's little theorem），全程在 mod 下運算 | 低優先級 | 面試不考，競賽才需要 |
+| 2026-03-28 | Contest (DP + Prefix Sum) | 沒想到用 prefix sum 加速「所有 ≤ v 的狀態加總」的 DP 轉移 | 當 DP 轉移是 Σ dp[v'] for v' ≤ v 時，先對上一行做 prefix sum，查詢變 O(1) | 已修正 | 2026-03-31 驗收通過 |

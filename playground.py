@@ -1,84 +1,58 @@
 """
-LC 208 - Implement Trie (Prefix Tree) (Medium)
+You are given an m x n grid. Each cell has an integer value:
+  0 — empty cell
+  1 — fresh orange
+  2 — obstacle (cannot pass through)
 
-A trie (pronounced as "try") or prefix tree is a tree data structure used to
-efficiently store and retrieve keys in a dataset of strings. There are various
-applications of this data structure, such as autocomplete and spellchecker.
+You also have a list of source coordinates. From each source, you can move
+up/down/left/right to adjacent cells (not obstacles) with cost 1 per step.
 
-Implement the Trie class:
-  - Trie() Initializes the trie object.
-  - void insert(String word) Inserts the string word into the trie.
-  - boolean search(String word) Returns true if the string word is in the
-    trie (i.e., was inserted before), and false otherwise.
-  - boolean startsWith(String prefix) Returns true if there is a previously
-    inserted string word that has the prefix prefix, and false otherwise.
+Return a 2D array where ans[i][j] is the minimum distance from cell (i,j) to
+its nearest source. If a cell is unreachable from any source, set it to -1.
+Obstacle cells should be -1.
 
-Input/Output:
-  Input:
-    ["Trie", "insert", "search", "search", "startsWith", "insert", "search"]
-    [[], ["apple"], ["apple"], ["app"], ["app"], ["app"], ["app"]]
-  Output:
-    [null, null, true, false, true, null, true]
+Example:
+  grid = [[0,0,0],
+          [0,2,0],
+          [0,0,0]]
+  sources = [(0,0), (2,2)]
+  Output: [[0,1,2],
+           [1,-1,1],
+           [2,1,0]]
 
 Constraints:
-  - 1 <= word.length, prefix.length <= 2000
-  - word and prefix consist only of lowercase English letters
-  - At most 3 * 10^4 calls in total will be made to insert, search, startsWith
+  - 1 <= m, n <= 100
+  - 0 <= grid[i][j] <= 2
+  - 1 <= len(sources) <= m*n
 """
 
-
-class Node:
-    def __init__(self, c):
-        self.isWord = False
-        self.char = c
-        self.child = {}
+from typing import List, Tuple
 
 
-class Trie:
-    def __init__(self):
-        self.root = Node("*")
-
-    def insert(self, word: str) -> None:
-        root = self.root
-        for c in word:
-            if c not in root.child:
-                root.child[c] = Node(c)
-            root = root.child[c]
-        root.isWord = True
-
-    def search(self, word: str) -> bool:
-        root = self.root
-        for c in word:
-            if c not in root.child:
-                return False
-            root = root.child[c]
-        return root.isWord
-
-    def startsWith(self, prefix: str) -> bool:
-        root = self.root
-        for c in prefix:
-            if c not in root.child:
-                return False
-            root = root.child[c]
-        return True
+def nearest_source(grid: List[List[int]], sources: List[Tuple[int,int]]) -> List[List[int]]:
+    pass
 
 
 # --- Tests ---
 if __name__ == "__main__":
-    t = Trie()
-    t.insert("apple")
-    assert t.search("apple") == True
-    assert t.search("app") == False
-    assert t.startsWith("app") == True
-    t.insert("app")
-    assert t.search("app") == True
+    g1 = [[0,0,0],
+          [0,2,0],
+          [0,0,0]]
+    assert nearest_source(g1, [(0,0),(2,2)]) == [[0,1,2],[1,-1,1],[2,1,0]]
 
-    t2 = Trie()
-    t2.insert("hello")
-    assert t2.search("hell") == False
-    assert t2.search("helloa") == False
-    assert t2.search("hello") == True
-    assert t2.startsWith("hell") == True
-    assert t2.startsWith("helloa") == False
+    g2 = [[0,0],
+          [0,0]]
+    assert nearest_source(g2, [(0,0)]) == [[0,1],[1,2]]
+
+    g3 = [[0,2,0]]
+    assert nearest_source(g3, [(0,0)]) == [[0,-1,-1]]
+
+    g4 = [[1]]
+    assert nearest_source(g4, [(0,0)]) == [[0]]
+
+    g5 = [[0,0,0],
+          [2,2,2],
+          [0,0,0]]
+    assert nearest_source(g5, [(0,1)]) == [[1,0,1],[-1,-1,-1],[-1,-1,-1]]
 
     print("All passed!")
