@@ -79,3 +79,5 @@ def fixed_window(nums, k):
 | LC 438 Find All Anagrams in a String | Medium | 類似 LC 76，fixed window 變體 | 未做 |
 | LC 567 Permutation in String | Medium | Fixed window + Counter 比較，初始窗口要先檢查 | 已掌握 |
 | LC 239 Sliding Window Maximum | Hard | Max heap + lazy deletion O(n log n) 或 monotonic deque O(n) | 已掌握 |
+| LC 713 Subarray Product Less Than K | Medium | Variable window，product shrink | 已掌握 |
+| LC 30 Substring with Concatenation of All Words | Hard | 外層 shift 0..w-1，內層 fixed-size window + Counter | 已掌握 |

@@ -11,7 +11,7 @@ last_updated: 2026-03-27
 | Pattern | 狀態 | 上次學習 | 關聯題數 | 筆記連結 |
 |---------|------|---------|---------|---------|
 | Two Pointers | 已掌握 | 2026-04-01 | 7 | [筆記](patterns/two_pointers.md) |
-| Sliding Window | 學習中 | 2026-03-27 | 6 | [筆記](patterns/sliding_window.md) |
+| Sliding Window | 需複習 | 2026-04-02 | 8 | [筆記](patterns/sliding_window.md) |
 | Binary Search | 學習中 | 2026-03-27 | 4 | [筆記](patterns/binary_search.md) |
 | BFS / DFS | 學習中 | 2026-03-27 | 8 | [筆記](patterns/bfs_dfs.md) |
 | Dynamic Programming (1D) | 學習中 | 2026-03-28 | 5 | [筆記](patterns/dp_1d.md) |
