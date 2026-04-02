@@ -19,3 +19,4 @@
 | 2026-03-28 | DP (LC 91) | 兩位數解碼只檢查 ≤ 26，忘記檢查 ≥ 10，導致 leading zero（如 "02"）被當合法 | 兩位數合法範圍是 `10 <= x <= 26`，左邊界排除 leading zero | 已修正 | 2026-03-31 驗收通過 |
 | 2026-03-28 | Contest (Combination + MOD) | 用 float 除法算 C(n,k) 導致精度錯誤，用 math.comb 大整數導致 TLE | 需要 mod 時用 factorial + inverse factorial 模板（Fermat's little theorem），全程在 mod 下運算 | 低優先級 | 面試不考，競賽才需要 |
 | 2026-03-28 | Contest (DP + Prefix Sum) | 沒想到用 prefix sum 加速「所有 ≤ v 的狀態加總」的 DP 轉移 | 當 DP 轉移是 Σ dp[v'] for v' ≤ v 時，先對上一行做 prefix sum，查詢變 O(1) | 已修正 | 2026-03-31 驗收通過 |
+| 2026-04-02 | 區間 DP (LC 312) | base case 想回傳 1 而非 0；搞混「最後戳的氣球鄰居是 1」vs「鄰居是區間外邊界」 | 枚舉最後戳的 `i`，此時區間內其他都沒了，鄰居是 `nums[l-1]` 和 `nums[r+1]`。空區間 `l > r` return 0，`l == r` 自然被 for loop 處理 | 需複習 | 再做一題區間 DP 確認觀念穩固 |
