@@ -31,6 +31,35 @@
 - **思維轉換：** 最佳化問題 → 判定問題。「最佳答案是多少？」→「如果答案上限是 X，feasible 嗎？」
 - **條件：** 答案空間有單調性（越大越容易 feasible），且 feasible 可以 O(n) greedy 驗證
 
+## Dynamic Programming (2D / Interval)
+
+- **兩字串比對：** `dp[i][j]` 依賴 `dp[i-1][j]`, `dp[i][j-1]`, `dp[i-1][j-1]`。Edit Distance 三方向對應 delete/insert/replace。
+- **Regex `*` 三路轉移：** `dp[i][j-2]`（用 0 次）、`dp[i][j-1]`（用 1 次）、`dp[i-1][j]`（多吃一個，前提是字元匹配）。
+- **區間 DP 核心：** 枚舉**最後一步**（最後戳的氣球、最後切的位置），這樣左右子問題才獨立。
+- **區間 DP base case：** 空區間 `l > r` return 0。`l == r` 通常不需特判，讓 for loop 自然處理。
+- **戳氣球鄰居：** `i` 是最後戳的 → 此時區間內其他都沒了 → 鄰居是 `nums[l-1]` 和 `nums[r+1]`，不是 1。
+- **2D DP 降維：** 只依賴上一排 → 一個 1D array + 一個 `prev` 變數存左上角（因為從左到右填時 `dp[j-1]` 已被覆寫）。所有依賴左上的 2D DP 都通用。
+
+## DFS + Memoization（Grid/DAG）
+
+- **嚴格遞增路徑不需 visited：** 值嚴格遞增 → 不可能走回頭路 → 不需要 visited set。
+- **`lru_cache` 就夠了：** 每個 cell 的答案固定，算過一次就記住。不需要手動 dp 陣列 + lru_cache 雙重 cache。
+
+## Heap / Priority Queue
+
+- **找 Median（LC 295）：** maxHeap（較小半）+ minHeap（較大半）。新元素先加入 minHeap，pop 最小的給 maxHeap，不平衡就反向搬。`findMedian` 看兩個 heap top。
+- **Top K 問題：** 找最小 k 個 → minHeap 全部放進去 pop k 次 O(n log n)，或用 maxHeap 維護大小 k 的窗口 O(n log k)。
+- **Quickselect O(n)：** 隨機 pivot 分區，只遞迴包含第 k 個的那一半。平均 O(n)，worst O(n²)。面試中 heap 解法通常就夠，但要能說出 Quickselect 作為 follow-up。
+
+## Monotonic Deque
+
+- **Sliding Window Maximum（LC 239）：** 維護遞減 deque（存 index）。右邊進來的 pop 掉所有比它小的；左邊超出窗口的從 deque 前端移除。deque[0] 永遠是當前窗口最大值。O(n)。
+
+## Graph — Backtracking
+
+- **用完所有邊（歐拉路徑，LC 332）：** visited 追蹤的是**邊**（票），不是**點**（機場）。排序鄰居 + 找到第一個解就 return，保證 lexicographic 最小。
+- **Hierholzer's O(E log E)：** 面試中知道存在就好，backtracking + 排序 + 早停在面試規模下夠用。
+
 ## DP + Prefix Sum 加速
 
 - **場景：** DP 轉移是「前面所有 ≤ v 的狀態加總」→ 每步先對上一行做 prefix sum，查詢變 O(1)

@@ -16,8 +16,8 @@ last_updated: 2026-03-27
 | BFS / DFS | 學習中 | 2026-03-27 | 8 | [筆記](patterns/bfs_dfs.md) |
 | Dynamic Programming (1D) | 學習中 | 2026-03-28 | 5 | [筆記](patterns/dp_1d.md) |
 | Hash Map Patterns | 學習中 | 2026-03-28 | 0 | [筆記](patterns/hash_map.md) |
-| Stack / Monotonic Stack | 學習中 | 2026-03-27 | 2 | [筆記](patterns/stack_monotonic.md) |
-| Heap / Priority Queue | 學習中 | 2026-03-28 | 0 | [筆記](patterns/heap_pq.md) |
+| Stack / Monotonic Stack | 學習中 | 2026-04-03 | 3 | [筆記](patterns/stack_monotonic.md) |
+| Heap / Priority Queue | 學習中 | 2026-04-03 | 1 | [筆記](patterns/heap_pq.md) |
 | Backtracking | 學習中 | 2026-03-28 | 0 | [筆記](patterns/backtracking.md) |
 | Sorting + Greedy | 學習中 | 2026-03-28 | 0 | [筆記](patterns/sorting_greedy.md) |
 
@@ -27,7 +27,7 @@ last_updated: 2026-03-27
 
 | Pattern | 狀態 | 上次學習 | 關聯題數 | 筆記連結 |
 |---------|------|---------|---------|---------|
-| Dynamic Programming (2D / Interval) | 學習中 | 2026-04-01 | 0 | [筆記](patterns/dp_2d.md) |
+| Dynamic Programming (2D / Interval) | 學習中 | 2026-04-03 | 4 | [筆記](patterns/dp_2d.md) |
 | Union Find | 學習中 | 2026-03-28 | 1 | [筆記](patterns/union_find.md) |
 | Trie | 學習中 | 2026-03-30 | 1 | [筆記](patterns/trie.md) |
 | Topological Sort | 學習中 | 2026-03-30 | 1 | [筆記](patterns/topological_sort.md) |

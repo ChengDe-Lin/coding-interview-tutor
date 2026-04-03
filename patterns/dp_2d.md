@@ -39,5 +39,6 @@ tier: 2
 |------|------|---------|---------|
 | LC 1143 Longest Common Subsequence | Medium | 兩字串 LCS | 未做 |
 | LC 72 Edit Distance | Medium | 三種操作對應三個方向 | ✅ 已解 |
+| LC 10 Regular Expression Matching | Hard | 兩字串比對，`*` 的三路轉移 | ✅ 已解 |
 | LC 62 Unique Paths | Medium | Grid path 基礎 | 未做 |
 | LC 312 Burst Balloons | Hard | 區間 DP，枚舉「最後戳的」讓子問題獨立 | ✅ 已解 |
