@@ -13,13 +13,13 @@ last_updated: 2026-03-27
 | Two Pointers | 已掌握 | 2026-04-01 | 7 | [筆記](patterns/two_pointers.md) |
 | Sliding Window | 需複習 | 2026-04-02 | 8 | [筆記](patterns/sliding_window.md) |
 | Binary Search | 學習中 | 2026-03-27 | 4 | [筆記](patterns/binary_search.md) |
-| BFS / DFS | 學習中 | 2026-03-27 | 8 | [筆記](patterns/bfs_dfs.md) |
-| Dynamic Programming (1D) | 學習中 | 2026-03-28 | 5 | [筆記](patterns/dp_1d.md) |
-| Hash Map Patterns | 學習中 | 2026-03-28 | 0 | [筆記](patterns/hash_map.md) |
+| BFS / DFS | 學習中 | 2026-04-07 | 9 | [筆記](patterns/bfs_dfs.md) |
+| Dynamic Programming (1D) | 學習中 | 2026-04-08 | 7 | [筆記](patterns/dp_1d.md) |
+| Hash Map Patterns | 學習中 | 2026-04-04 | 2 | [筆記](patterns/hash_map.md) |
 | Stack / Monotonic Stack | 學習中 | 2026-04-03 | 3 | [筆記](patterns/stack_monotonic.md) |
-| Heap / Priority Queue | 學習中 | 2026-04-03 | 1 | [筆記](patterns/heap_pq.md) |
+| Heap / Priority Queue | 學習中 | 2026-04-04 | 3 | [筆記](patterns/heap_pq.md) |
 | Backtracking | 學習中 | 2026-03-28 | 0 | [筆記](patterns/backtracking.md) |
-| Sorting + Greedy | 學習中 | 2026-03-28 | 0 | [筆記](patterns/sorting_greedy.md) |
+| Sorting + Greedy | 學習中 | 2026-04-04 | 2 | [筆記](patterns/sorting_greedy.md) |
 
 ## Tier 2 — 需要熟練
 
@@ -31,7 +31,7 @@ last_updated: 2026-03-27
 | Union Find | 學習中 | 2026-03-28 | 1 | [筆記](patterns/union_find.md) |
 | Trie | 學習中 | 2026-03-30 | 1 | [筆記](patterns/trie.md) |
 | Topological Sort | 學習中 | 2026-03-30 | 1 | [筆記](patterns/topological_sort.md) |
-| Segment Tree / BIT | 未開始 | — | 0 | — |
+| Segment Tree / BIT | 學習中 | 2026-04-06 | 2 | [筆記](patterns/segment_tree.md) |
 | Divide and Conquer | 未開始 | — | 0 | — |
 | Bit Manipulation | 未開始 | — | 0 | — |
 | Linked List Techniques | 未開始 | — | 0 | — |

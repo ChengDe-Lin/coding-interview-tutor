@@ -7,6 +7,7 @@
 - **相向指標正確性論證：** 每次移動都排除一個不可能更優的配對，所以不會漏答案。
 - **Trapping Rain Water 核心：** 每個位置的水量 = `min(leftMax, rightMax) - height[i]`。Two pointer 版本：**max 小的那邊水量已確定**（另一邊一定 ≥ 它），所以先處理小的那邊、移動指標。先移指標再更新 max，確保差值 ≥ 0。
 - **讀寫指標口訣：** read 掃全部，write 只在該放東西時往前。兩者的差距就是被過濾掉的元素。
+- **Floyd's Cycle Detection（LC 287）：** 把 `nums[i]` 當指標，array 變成 linked list，重複數字 = cycle 入口。Phase 1：slow 一步、fast 兩步，在 cycle 內相遇。Phase 2：新指標從起點出發，跟 slow 同速走，相遇點就是入口。**Phase 2 原理：** 設起點到入口距離 `a`，入口到相遇點 `b`，cycle 長 `c`。Phase 1 結束時 slow 走了 `a+b`，fast 走了 `a+b+c`，所以 `a+b+c = 2(a+b)` → `c = a+b` → `a = c-b`。從相遇點再走 `a` 步 = 從相遇點走 `c-b` 步 = 剛好回到入口。
 
 ## Sliding Window
 
@@ -49,7 +50,7 @@
 
 - **找 Median（LC 295）：** maxHeap（較小半）+ minHeap（較大半）。新元素先加入 minHeap，pop 最小的給 maxHeap，不平衡就反向搬。`findMedian` 看兩個 heap top。
 - **Top K 問題：** 找最小 k 個 → minHeap 全部放進去 pop k 次 O(n log n)，或用 maxHeap 維護大小 k 的窗口 O(n log k)。
-- **Quickselect O(n)：** 隨機 pivot 分區，只遞迴包含第 k 個的那一半。平均 O(n)，worst O(n²)。面試中 heap 解法通常就夠，但要能說出 Quickselect 作為 follow-up。
+- **Quickselect O(n)：** 選 pivot 分區（把 pivot 移到最後、用 boundary 指標把 <= pivot 的掃到左邊、最後 pivot 歸位），只遞迴包含第 k 個的那一半。平均 O(n)（n+n/2+n/4+...=2n），worst O(n²)。面試中 heap 解法通常就夠，但要能說出 Quickselect 作為 follow-up。
 
 ## Monotonic Deque
 
@@ -59,6 +60,11 @@
 
 - **用完所有邊（歐拉路徑，LC 332）：** visited 追蹤的是**邊**（票），不是**點**（機場）。排序鄰居 + 找到第一個解就 return，保證 lexicographic 最小。
 - **Hierholzer's O(E log E)：** 面試中知道存在就好，backtracking + 排序 + 早停在面試規模下夠用。
+
+## 雙目標 DP
+
+- **「先最大化 A 再最小化 B」：** DP cell 存 tuple `(-A, B)`，比較直接用 `min()`。Python tuple 比較是 lexicographic，自動先比第一個再比第二個。
+- **例：** 最大化 peak 數量、最小化操作數 → 存 `(-count, ops)`，取 `min` 就是最優解。
 
 ## DP + Prefix Sum 加速
 
