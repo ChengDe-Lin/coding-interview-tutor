@@ -66,6 +66,22 @@
 - **「先最大化 A 再最小化 B」：** DP cell 存 tuple `(-A, B)`，比較直接用 `min()`。Python tuple 比較是 lexicographic，自動先比第一個再比第二個。
 - **例：** 最大化 peak 數量、最小化操作數 → 存 `(-count, ops)`，取 `min` 就是最優解。
 
+## Bit Manipulation
+
+**基本 operator：** `&` AND、`|` OR、`^` XOR、`~` NOT、`<<` 左移、`>>` 右移
+
+**3 個常用操作：**
+- **取得第 i 位：** `(x >> i) & 1`
+- **把第 i 位設為 1：** `x | (1 << i)`
+- **把第 i 位設為 0：** `x & ~(1 << i)`
+
+**3 個神技：**
+- **`x & (x - 1)`：** 清掉 x **最低位的 1**。用途：數 1 的個數（Brian Kernighan's algorithm）、判斷 2 的冪次（`x & (x-1) == 0 且 x > 0`）
+- **`x & -x`：** 取出 x **最低位的 1**（只留最低的那個 bit）。用途：Fenwick Tree (BIT) 的 `lowbit` 操作
+- **XOR 性質：** `a ^ a = 0`、`a ^ 0 = a`、交換律+結合律成立。用途：找「只出現一次」的數字（全部 XOR 起來，重複的抵消）
+
+**Bitmask DP：** 用一個整數的 bit 表示「狀態集合」（哪些元素被選）。常見於 TSP、State Compression DP，狀態數 `2^n`，n ≤ 20 時可用。
+
 ## DP + Prefix Sum 加速
 
 - **場景：** DP 轉移是「前面所有 ≤ v 的狀態加總」→ 每步先對上一行做 prefix sum，查詢變 O(1)

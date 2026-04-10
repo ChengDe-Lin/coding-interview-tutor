@@ -19,9 +19,10 @@
 | 2026-03-28 | DP (LC 91) | 兩位數解碼只檢查 ≤ 26，忘記檢查 ≥ 10，導致 leading zero（如 "02"）被當合法 | 兩位數合法範圍是 `10 <= x <= 26`，左邊界排除 leading zero | 已修正 | 2026-03-31 驗收通過 |
 | 2026-03-28 | Contest (Combination + MOD) | 用 float 除法算 C(n,k) 導致精度錯誤，用 math.comb 大整數導致 TLE | 需要 mod 時用 factorial + inverse factorial 模板（Fermat's little theorem），全程在 mod 下運算 | 低優先級 | 面試不考，競賽才需要 |
 | 2026-03-28 | Contest (DP + Prefix Sum) | 沒想到用 prefix sum 加速「所有 ≤ v 的狀態加總」的 DP 轉移 | 當 DP 轉移是 Σ dp[v'] for v' ≤ v 時，先對上一行做 prefix sum，查詢變 O(1) | 已修正 | 2026-03-31 驗收通過 |
-| 2026-04-02 | 區間 DP (LC 312) | base case 想回傳 1 而非 0；搞混「最後戳的氣球鄰居是 1」vs「鄰居是區間外邊界」 | 枚舉最後戳的 `i`，此時區間內其他都沒了，鄰居是 `nums[l-1]` 和 `nums[r+1]`。空區間 `l > r` return 0，`l == r` 自然被 for loop 處理 | 需複習 | 再做一題區間 DP 確認觀念穩固 |
+| 2026-04-02 | 區間 DP (LC 312) | base case 想回傳 1 而非 0；搞混「最後戳的氣球鄰居是 1」vs「鄰居是區間外邊界」 | 枚舉最後戳的 `i`，此時區間內其他都沒了，鄰居是 `nums[l-1]` 和 `nums[r+1]`。空區間 `l > r` return 0，`l == r` 自然被 for loop 處理 | 需複習 | 2026-04-09 口述通過但使用者要求再次驗收；deep_dive 筆記在 `deep_dives/interval_dp_burst_balloons.md`。下次驗收時限時實作 LC 312 或 LC 1039 |
 | 2026-04-03 | 2D DP (LC 10) | base case range 上界少了 +1；非 `*` 分支誤寫 `p[j-1] == "*"` 應為 `"."` | 仔細區分 `*` 和 `.` 的角色。base case `dp[0][j]` 的 range 要到 `len(p)+1` | 需複習 | 注意 typo 型 bug，寫完要 trace 一個 case |
-| 2026-04-03 | Quickselect | 完全忘記 Quickselect 怎麼做，不知道怎麼判斷第 k 個在哪一半 | partition 後 pivot 在 index p，p==k 結束，p<k 遞迴右半，p>k 遞迴左半。只遞迴一邊所以 n+n/2+n/4+...=O(n) | 需複習 | 要能口述 partition 流程和 O(n) 收斂原因 |
-| 2026-04-05 | 雙目標 DP（Contest） | 不知道 DP cell 可以存 tuple 處理「先最大化 A 再最小化 B」的雙目標 | 存 `(-count, ops)` tuple，利用 Python tuple lexicographic 比較直接取 `min`。任何有優先級的多目標 DP 都能用這個技巧 | 需複習 | 再遇到雙目標問題時要能自己想到 tuple 比較 |
+| 2026-04-03 | Quickselect | 完全忘記 Quickselect 怎麼做，不知道怎麼判斷第 k 個在哪一半 | partition 後 pivot 在 index p，p==k 結束，p<k 遞迴右半，p>k 遞迴左半。只遞迴一邊所以 n+n/2+n/4+...=O(n) | 已修正 | 2026-04-09 驗收通過 |
+| 2026-04-05 | 雙目標 DP（Contest） | 不知道 DP cell 可以存 tuple 處理「先最大化 A 再最小化 B」的雙目標 | 存 `(-count, ops)` tuple，利用 Python tuple lexicographic 比較直接取 `min`。任何有優先級的多目標 DP 都能用這個技巧 | 已修正 | 2026-04-09 驗收通過，能完整口述 DP 結構和 tuple 比較技巧 |
 | 2026-04-08 | 0/1 Knapsack (LC 416) | 第一反應用 backtracking，沒想到用 set 追蹤可達 sum 做到 O(n*target) | 「能不能湊出某個 sum」→ 0/1 knapsack。用 set 或 boolean DP array 追蹤所有可達值，每個元素選或不選 | 需複習 | 看到「子集 sum = target」要直覺想到 knapsack |
 | 2026-04-09 | 0/1 Knapsack (LC 494) | 用 shift array 做時搞混掃描方向和轉移邏輯；數學轉換 P=(total+target)/2 面試時不確定能想到 | 兩種做法：(1) dict 每輪建 newCounts 天然隔離上一輪 (2) 數學轉換成標準 knapsack + 倒著掃。記住：`(total+target)` 是奇數要直接 return 0 | 需複習 | 要能用兩種做法都寫出來 |
+| 2026-04-09 | Bit Manipulation (LC 137) | XOR 不夠用時想不到「一 bit 一 bit 看 + mod k」的通用思路；Python 負數處理坑：`num // 2` 會無窮迴圈、`int` 無限長 | (1) 遇到「每個數出現 k 次、找出現 1 次的」→ 每 bit 累加 mod k (2) Python bit op 處理負數：mask 成 32-bit unsigned (`(num >> i) & 1`)，最後若 `ans >= 2^31` 就 `-= 2^32` 轉回 signed | 需複習 | 再出一題類似結構驗收 |
