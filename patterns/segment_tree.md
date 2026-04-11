@@ -61,11 +61,13 @@ class SegmentTree:
 | Update | O(log n) | — |
 | Query | O(log n) | — |
 
-## 常見陷阱
+## 常見陷阱（連犯兩次的坑）
 
-- Python `/` 回傳 float，要用 `//` 整數除法
-- Query 用半開區間 [l, r)：`r` 是 exclusive，奇數時**先 `r -= 1` 再收割**
-- Update 的 while 裡面要有 `idx //= 2`，不然無限迴圈
+1. **Build 葉節點 index 轉換**：`tree[i] = nums[i - self.n]`，不是 `nums[i]`
+2. **Update while 裡要 `i //= 2`**：不然無限迴圈
+3. **Query 的 `r` 要 `+1` 轉半開區間**：`r += self.n + 1`，不是 `r += self.n`
+4. Python `/` 回傳 float，用 `//`
+5. Query 奇數時：`l` 收割後 `l += 1`；`r` **先 `r -= 1` 再收割**
 
 ## 經典題
 

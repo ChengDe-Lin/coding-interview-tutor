@@ -33,7 +33,7 @@ last_updated: 2026-03-27
 | Topological Sort | 學習中 | 2026-03-30 | 1 | [筆記](patterns/topological_sort.md) |
 | Segment Tree / BIT | 學習中 | 2026-04-06 | 2 | [筆記](patterns/segment_tree.md) |
 | Divide and Conquer | 未開始 | — | 0 | — |
-| Bit Manipulation | 未開始 | — | 0 | — |
+| Bit Manipulation | 學習中 | 2026-04-11 | 4 | [筆記](patterns/bit_manipulation.md) |
 | Linked List Techniques | 未開始 | — | 0 | — |
 
 ## Tier 3 — 了解即可

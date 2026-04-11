@@ -26,3 +26,5 @@
 | 2026-04-08 | 0/1 Knapsack (LC 416) | 第一反應用 backtracking，沒想到用 set 追蹤可達 sum 做到 O(n*target) | 「能不能湊出某個 sum」→ 0/1 knapsack。用 set 或 boolean DP array 追蹤所有可達值，每個元素選或不選 | 需複習 | 看到「子集 sum = target」要直覺想到 knapsack |
 | 2026-04-09 | 0/1 Knapsack (LC 494) | 用 shift array 做時搞混掃描方向和轉移邏輯；數學轉換 P=(total+target)/2 面試時不確定能想到 | 兩種做法：(1) dict 每輪建 newCounts 天然隔離上一輪 (2) 數學轉換成標準 knapsack + 倒著掃。記住：`(total+target)` 是奇數要直接 return 0 | 需複習 | 要能用兩種做法都寫出來 |
 | 2026-04-09 | Bit Manipulation (LC 137) | XOR 不夠用時想不到「一 bit 一 bit 看 + mod k」的通用思路；Python 負數處理坑：`num // 2` 會無窮迴圈、`int` 無限長 | (1) 遇到「每個數出現 k 次、找出現 1 次的」→ 每 bit 累加 mod k (2) Python bit op 處理負數：mask 成 32-bit unsigned (`(num >> i) & 1`)，最後若 `ans >= 2^31` 就 `-= 2^32` 轉回 signed | 需複習 | 再出一題類似結構驗收 |
+| 2026-04-11 | Bitmask DP 識別 | 不確定什麼時候該想到 bitmask DP | 識別信號：(1) n ≤ 20 (2)「選了哪些」影響決策，不只是數量 (3) backtracking 有重複子問題 (4) TSP 型或分配型問題。跟 bitmask BFS 的差別：BFS 求最短路徑，DP 求最優值/方法數 | 需複習 | 做完 LC 698 後驗收能否獨立識別 |
+| 2026-04-11 | Array O(1) 刪除 (LC 380) | 不知道 array 中間刪除可以 O(1)：跟最後一個元素交換再 pop | 需要 O(1) 刪除 array 元素時：swap with last + pop。配合 dict 記錄每個值的 index，swap 後要更新 dict | 需複習 | 要能獨立寫出 RandomizedSet |
