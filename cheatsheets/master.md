@@ -82,6 +82,33 @@
 
 **Bitmask DP：** 用一個整數的 bit 表示「狀態集合」（哪些元素被選）。常見於 TSP、State Compression DP，狀態數 `2^n`，n ≤ 20 時可用。
 
+## 0/1 Knapsack 三種變體
+
+**共同骨架：** 外層 `for num in nums`（一個一個物品），內層 `for j in range(target, num-1, -1)`（**倒著掃**，確保每個物品只用一次）。Base case `dp[0] = True/1/0`。
+
+```python
+# Boolean — 能不能湊出 target（LC 416）
+dp = [False] * (target + 1); dp[0] = True
+for num in nums:
+    for j in range(target, num - 1, -1):
+        dp[j] = dp[j] or dp[j - num]
+
+# Counting — 湊出 target 有幾種方法（LC 494）
+dp = [0] * (target + 1); dp[0] = 1
+for num in nums:
+    for j in range(target, num - 1, -1):
+        dp[j] += dp[j - num]
+
+# Optimization — 容量限制下最大價值
+dp = [0] * (W + 1)
+for w, v in items:
+    for j in range(W, w - 1, -1):
+        dp[j] = max(dp[j], dp[j - w] + v)
+```
+
+- **為什麼倒著掃：** 正著掃時 `dp[j-num]` 已被本輪更新 → 同一物品被重複使用（變成 Unbounded Knapsack）。倒著掃保證讀到的是上一輪的值。
+- **Unbounded Knapsack（完全背包）：** 正著掃就行，因為每個物品可以用無限次（如 LC 322 Coin Change）。
+
 ## DP + Prefix Sum 加速
 
 - **場景：** DP 轉移是「前面所有 ≤ v 的狀態加總」→ 每步先對上一行做 prefix sum，查詢變 O(1)
