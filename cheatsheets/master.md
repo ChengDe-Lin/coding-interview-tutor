@@ -41,6 +41,20 @@
 - **戳氣球鄰居：** `i` 是最後戳的 → 此時區間內其他都沒了 → 鄰居是 `nums[l-1]` 和 `nums[r+1]`，不是 1。
 - **2D DP 降維：** 只依賴上一排 → 一個 1D array + 一個 `prev` 變數存左上角（因為從左到右填時 `dp[j-1]` 已被覆寫）。所有依賴左上的 2D DP 都通用。
 
+## 線性指派 DP（Linear Assignment with Capacity）
+
+- **識別信號：** 兩組東西要配對（robot ↔ factory、任務 ↔ 機器、工人 ↔ 房間），都可以映射到一維順序，且有 capacity/容量限制。
+- **必備性質：non-crossing (不交叉)。** 兩邊都 sort 後，最佳解的指派順序一定單調。證明用 exchange argument：任何「交叉」指派都可以 swap 成「不交叉」且總距離不增。
+- **state：** `dp[i][j]` = 前 i 個 A 已分配完、用到前 j 個 B 的最小成本。
+- **transition（關鍵）：** 枚舉 B_j 吃了 **k 個 A**（k 是 `[0, min(capacity_j, i)]`）：
+  ```
+  dp[i][j] = min over k of:
+             dp[i-k][j-1] + cost(A[i-k : i] -> B_j)
+  ```
+- **Base case：** `dp[0][j] = 0`（0 個 A，任意 prefix 的 B 成本 0）；`dp[i][0] = inf` for i > 0（無 B 可用）。
+- **警訊：** state 對了但 transition 只寫 `dp[i-1][j]` 和 `dp[i][j-1]` → 隱含「每個 slot 最多吃 1 個」假設。有 capacity > 1 一定要**枚舉 k**。（和多重背包、partition DP 同一個模式。）
+- **LC 2463 原型：** 兩邊 sort → non-crossing → `dp[i][j]` + 枚舉 k。O(n² · m)。
+
 ## DFS + Memoization（Grid/DAG）
 
 - **嚴格遞增路徑不需 visited：** 值嚴格遞增 → 不可能走回頭路 → 不需要 visited set。

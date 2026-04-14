@@ -40,6 +40,21 @@
 
 **自問：** 「我需要的是最短距離（BFS），還是窮舉/路徑/子樹資訊（DFS）？」
 
+## 線性指派 DP
+
+**Trigger：**
+- 兩組東西要一對一或多對一配對（robot ↔ factory、task ↔ worker、球 ↔ 籃子）
+- 每個實體的位置/順序可以映射到一維
+- 有 capacity / 容量限制（一個 slot 可以吃多個）
+- brute force 是 `k^n` 或 `n!` 量級
+
+**自問：**
+1. 「兩邊都 sort 之後，最佳解會不會交叉？」→ 用 exchange argument 證明 non-crossing
+2. 「state 能不能用『前 i 個 A、前 j 個 B』？」
+3. 「每個 B_j 可以吃多少 A？要不要枚舉 k？」
+
+**反面警訊：** 看到這種題第一反應想 greedy 往往會爆（capacity 限制讓 greedy 失效）。
+
 ---
 
-*Last updated: 2026-03-24*
+*Last updated: 2026-04-14*

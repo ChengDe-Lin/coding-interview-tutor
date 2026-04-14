@@ -1,5 +1,5 @@
 ---
-last_updated: 2026-04-01
+last_updated: 2026-04-14
 status: 學習中
 tier: 2
 ---
@@ -33,6 +33,20 @@ tier: 2
 - 外層迴圈是區間長度，內層是起點
 - `dp[i][j] = min/max over k in [i,j] of (dp[i][k] + dp[k][j] + cost)`
 
+### 線性指派 DP（with capacity）
+- **場景：** 兩組實體配對，都在一維順序上，有容量限制
+- **關鍵前置：** 兩邊都 sort，最佳解 non-crossing（exchange argument 證明）
+- **state：** `dp[i][j]` = 前 i 個 A 配前 j 個 B 的最小成本
+- **transition：** 枚舉 B_j 吃 k 個：
+  ```
+  dp[i][j] = min over k in [0, min(cap_j, i)] of:
+             dp[i-k][j-1] + cost(A[i-k:i] -> B_j)
+  ```
+- **Base case：** `dp[0][j] = 0`, `dp[i][0] = inf` (i > 0)
+- **複雜度：** O(n² · m)
+- **陷阱：** transition 只寫 `dp[i-1][j]` / `dp[i][j-1]` 會漏掉 k ≥ 2 的情況
+- **代表題：** LC 2463 Minimum Total Distance Traveled
+
 ## 經典題
 
 | 題目 | 難度 | 關鍵考點 | 我的狀態 |
@@ -42,3 +56,4 @@ tier: 2
 | LC 10 Regular Expression Matching | Hard | 兩字串比對，`*` 的三路轉移 | ✅ 已解 |
 | LC 62 Unique Paths | Medium | Grid path 基礎 | 未做 |
 | LC 312 Burst Balloons | Hard | 區間 DP，枚舉「最後戳的」讓子問題獨立 | ✅ 已解 |
+| LC 2463 Minimum Total Distance Traveled | Hard | 線性指派 + non-crossing + 枚舉 k | 🕐 已學觀念，回家獨立寫 |
