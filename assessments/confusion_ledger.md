@@ -28,4 +28,5 @@
 | 2026-04-09 | Bit Manipulation (LC 137) | XOR 不夠用時想不到「一 bit 一 bit 看 + mod k」的通用思路；Python 負數處理坑：`num // 2` 會無窮迴圈、`int` 無限長 | (1) 遇到「每個數出現 k 次、找出現 1 次的」→ 每 bit 累加 mod k (2) Python bit op 處理負數：mask 成 32-bit unsigned (`(num >> i) & 1`)，最後若 `ans >= 2^31` 就 `-= 2^32` 轉回 signed | 需複習 | 再出一題類似結構驗收 |
 | 2026-04-11 | Bitmask DP 識別 | 不確定什麼時候該想到 bitmask DP | 識別信號：(1) n ≤ 20 (2)「選了哪些」影響決策，不只是數量 (3) backtracking 有重複子問題 (4) TSP 型或分配型問題。跟 bitmask BFS 的差別：BFS 求最短路徑，DP 求最優值/方法數 | 已修正 | 2026-04-12 驗收通過 |
 | 2026-04-11 | Array O(1) 刪除 (LC 380) | 不知道 array 中間刪除可以 O(1)：跟最後一個元素交換再 pop | 需要 O(1) 刪除 array 元素時：swap with last + pop。配合 dict 記錄每個值的 index，swap 後要更新 dict | 已修正 | 2026-04-12 驗收通過 |
-| 2026-04-12 | LC 1235 Job Scheduling | 待驗收——不要提示 pattern，限時獨立解 | DP + Binary Search 組合題 | 需複習 | 下次 session 出題，不提示做法 |
+| 2026-04-12 | LC 1235 Job Scheduling | DP 的 index 第一反應用 time 而非 job。時間範圍大（10^9）時要想到用 index 而非 value 當 DP 維度 | 排序後以 job index 當 dp[i]。下一步：在已排序的 end times 中用 binary search 找不衝突的 job。複雜度 O(n log n) | 需複習 | 2026-04-14 hint 後通過，下次獨立驗收 |
+| 2026-04-13 | LC 227 Calculator (結合律) | 最後 while loop 右到左 pop 導致 `+/-` 變右結合，`5-3+2` 答案錯 | `+/-` 要左結合：最後 loop 從左往右算，或把 `-x` 轉成 `+(-x)` 再全部相加 | 需複習 | 再出一題含多個減號 |
