@@ -41,19 +41,44 @@
 - **戳氣球鄰居：** `i` 是最後戳的 → 此時區間內其他都沒了 → 鄰居是 `nums[l-1]` 和 `nums[r+1]`，不是 1。
 - **2D DP 降維：** 只依賴上一排 → 一個 1D array + 一個 `prev` 變數存左上角（因為從左到右填時 `dp[j-1]` 已被覆寫）。所有依賴左上的 2D DP 都通用。
 
-## 線性指派 DP（Linear Assignment with Capacity）
+## 線性指派 DP（Linear Assignment / Non-crossing Prefix DP）
 
-- **識別信號：** 兩組東西要配對（robot ↔ factory、任務 ↔ 機器、工人 ↔ 房間），都可以映射到一維順序，且有 capacity/容量限制。
-- **必備性質：non-crossing (不交叉)。** 兩邊都 sort 後，最佳解的指派順序一定單調。證明用 exchange argument：任何「交叉」指派都可以 swap 成「不交叉」且總距離不增。
-- **state：** `dp[i][j]` = 前 i 個 A 已分配完、用到前 j 個 B 的最小成本。
-- **transition（關鍵）：** 枚舉 B_j 吃了 **k 個 A**（k 是 `[0, min(capacity_j, i)]`）：
-  ```
-  dp[i][j] = min over k of:
-             dp[i-k][j-1] + cost(A[i-k : i] -> B_j)
-  ```
-- **Base case：** `dp[0][j] = 0`（0 個 A，任意 prefix 的 B 成本 0）；`dp[i][0] = inf` for i > 0（無 B 可用）。
-- **警訊：** state 對了但 transition 只寫 `dp[i-1][j]` 和 `dp[i][j-1]` → 隱含「每個 slot 最多吃 1 個」假設。有 capacity > 1 一定要**枚舉 k**。（和多重背包、partition DP 同一個模式。）
-- **LC 2463 原型：** 兩邊 sort → non-crossing → `dp[i][j]` + 枚舉 k。O(n² · m)。
+**識別信號（全部符合 → 幾乎肯定是這個 pattern）**
+1. 兩組實體：一群多（items）、一群少（slots/buckets/k 個點），**兩群都有線性順序**（位置/時間/索引）
+2. 成本是**距離型**（|a-b|、差、平方差、編輯距離），隨位置差單調
+3. 目標 minimize/maximize 總成本，n ≤ 幾百（允許 O(n²·m)）
+
+**救援訊號（只看到一群時）：** 題目說「把 n 個 item **分配到 k 個** (mailbox/container/group)」→ **k 就是第二群**。
+
+**排除對照（主動自問）**
+- Greedy：僅 cap=1 + 線性成本可能成立；有 cap>1 或段內非線性成本 → greedy 死
+- Hungarian：兩邊**無順序**才用；有順序 + 距離成本 → 必 non-crossing，DP 勝
+- Flow：capacity 結構複雜、無線性序 → flow；有序 → DP subsume
+- Partition DP (1D)：只有**一個序列**分段。差別：線性指派**兩邊 prefix 同時推進**
+- Interval DP：子問題是「區間 [l,r]」而非「前綴 i」
+
+**動作 3 步**
+1. 兩邊 **sort**
+2. **Exchange argument** 證 non-crossing（交叉不等式）
+3. DP：`dp[i][j]` = prefix i of A + prefix j of B 的最優。**Transition 枚舉 B_j 吃幾個 A，k 從 0 開始**（k=0 = B_j 不收任何 A）
+
+**state：** `dp[i][j]` = 前 i 個 A 配完、用到前 j 個 B 的最小成本
+**transition：**
+```
+dp[i][j] = min over k in [0, min(cap_j, i)] of:
+           dp[i-k][j-1] + cost(A[i-k : i] -> B_j)
+```
+**Base case：** `dp[0][j] = 0`；`dp[i][0] = inf` for i>0
+
+**警訊：** transition 只寫 `dp[i-1][j]` 和 `dp[i][j-1]` → 隱含 cap=1。有 cap>1 或「slot 可吃多個」**一定枚舉 k**
+
+**邊界：** 枚舉 `k` 存取 `A[i-k-1]` 時，檢查實際 index：`if i-k-1 < 0: break`（不是檢查 `i-k`）
+
+**原型題**
+- **LC 2463**（Min Total Distance Traveled）：robots↔factories，有 capacity。O(n²·m)
+- **LC 1478**（Allocate Mailboxes）：houses 分給 k 個 mailbox，**B_j 位置自己決定** → segCost(l,r) = 段內中位數距離和
+- **LC 1000**（Merge Stones）：interval DP 變體，非典型線性指派但同家族
+- **段內成本預算：** 若 cost(A[l:r] → B_j) 可預先算成 `segCost[l][r]`，transition O(1) 查表
 
 ## DFS + Memoization（Grid/DAG）
 
