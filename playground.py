@@ -37,8 +37,32 @@ from typing import List
 
 
 def minDistance(houses: List[int], k: int) -> int:
-    # your code here
+    #
+    # dp[i][j] means only given only the first houses, and j mailbox, the min distance
+    # to update, dp[i][j] i need to check how many houses i want to assign to mailbox j. so, i need to iterate over dp[i-h][j-1] for all h before i.
+    # there is one key note, worth to mention, the min cost of distance to a mailbox, for pre-arranged houses is fix, we make the number of houses on left side and the right side of the mailbox is the same
+    # any point that make left/right balance, will lead to the same total distance, and that would be the min distance under this scenario.
+    n = len(houses)
+    cost = [[float('inf')] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(i, n):
+            cost[i][j] =
     pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # --- Tests ---
