@@ -1,77 +1,71 @@
 """
-LC 1478 - Allocate Mailboxes (Hard)
+LC 862 - Shortest Subarray with Sum at Least K (Hard)
 
-Given the array houses where houses[i] is the location of the ith house along
-a street and an integer k, allocate k mailboxes on the street.
+Given an integer array nums and an integer k, return the length of the
+shortest non-empty subarray of nums with a sum of at least k. If there is
+no such subarray, return -1.
 
-Return the minimum total distance between each house and its nearest mailbox.
+A subarray is a contiguous part of an array.
 
-The answer is guaranteed to fit in a 32-bit signed integer.
-
-Input:  houses: List[int], k: int
+Input:  nums: List[int], k: int
 Output: int
 
 Examples:
-  Input:  houses = [1,4,8,10,20], k = 3
-  Output: 5
-  Explanation: Allocate mailboxes at positions 3, 9, 20.
-  Minimum total distance = |1-3|+|4-3|+|8-9|+|10-9|+|20-20| = 5
+  Input:  nums = [1], k = 1
+  Output: 1
 
-  Input:  houses = [2,3,5,12,18], k = 2
-  Output: 9
-  Explanation: Allocate mailboxes at positions 3, 14.
-  Minimum total distance = |2-3|+|3-3|+|5-3|+|12-14|+|18-14| = 9
+  Input:  nums = [1,2], k = 4
+  Output: -1
 
-  Input:  houses = [7,4,6,1], k = 1
-  Output: 8
+  Input:  nums = [2,-1,2], k = 3
+  Output: 3
 
 Constraints:
-  - n == houses.length
-  - 1 <= n <= 100
-  - 1 <= houses[i] <= 10^4
-  - All the integers of houses are unique.
-  - 1 <= k <= n
+  - 1 <= nums.length <= 10^5
+  - -10^5 <= nums[i] <= 10^5
+  - 1 <= k <= 10^9
 """
 
 from typing import List
+from collections import deque
 
-
-def minDistance(houses: List[int], k: int) -> int:
-    #
-    # dp[i][j] means only given only the first houses, and j mailbox, the min distance
-    # to update, dp[i][j] i need to check how many houses i want to assign to mailbox j. so, i need to iterate over dp[i-h][j-1] for all h before i.
-    # there is one key note, worth to mention, the min cost of distance to a mailbox, for pre-arranged houses is fix, we make the number of houses on left side and the right side of the mailbox is the same
-    # any point that make left/right balance, will lead to the same total distance, and that would be the min distance under this scenario.
-    n = len(houses)
-    cost = [[float('inf')] * n for _ in range(n)]
+def shortestSubarray(nums: List[int], k: int) -> int:
+    # seeing continuse sub array count, think of prefix sum first.
+    # once i get a prefix sum, i need to find at any point the nearest idx that smaller than a target number, and that target number is dynamically change based on the cur num
+    # let's think simplier, i only need to find the cloest number that smaller smaller than me, not me - target
+    # preSum = [1, 7, 3, 6, 4, 8] >> maintain a monolitic stack keep increasing sequence
+    # what i want is to find a val that nearest to me and meVal - val >= target
+    # so, now, if i want to find the nearest previous member that is smaller than Me - target,
+    # i can change the monolitic stack pop check quation to from meVal >= val to Me - Taergt >= val
+    # your code here
+    prefixSum = [0]
+    for num in nums:
+        prefixSum.append(prefixSum[-1] + num)
+    n = len(prefixSum)
+    stack = deque()
+    ans = float('inf')
     for i in range(n):
-        for j in range(i, n):
-            cost[i][j] =
-    pass
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        while stack and prefixSum[stack[-1]] > prefixSum[i]:
+            stack.pop()
+        stack.append(i)
+        while prefixSum[stack[-1]] - prefixSum[stack[0]] >= k:
+            ans = min(ans, stack[-1] - stack[0])
+            stack.popleft()
+    if ans == float('inf'):
+        return -1
+    print(ans)
+    return ans
 
 
 
 # --- Tests ---
 if __name__ == "__main__":
-    assert minDistance([1, 4, 8, 10, 20], 3) == 5
-    assert minDistance([2, 3, 5, 12, 18], 2) == 9
-    assert minDistance([7, 4, 6, 1], 1) == 8
-    assert minDistance([3, 6, 14, 10], 4) == 0
-    assert minDistance([5, 10], 2) == 0
-    assert minDistance([1], 1) == 0
-    assert minDistance([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3) == 8
+    assert shortestSubarray([1], 1) == 1
+    assert shortestSubarray([1, 2], 4) == -1
+    assert shortestSubarray([2, -1, 2], 3) == 3
+    assert shortestSubarray([17, 85, 93, -45, -21], 150) == 2
+    assert shortestSubarray([84, -37, 32, 40, 95], 167) == 3
+    assert shortestSubarray([-28, 81, -20, 28, -29], 89) == 3
+    assert shortestSubarray([1, 2, 3, 4, 5], 11) == 3
+    assert shortestSubarray([-1, 2, -1, 4, -1], 3) == 1
     print("All passed!")

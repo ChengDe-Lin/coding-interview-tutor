@@ -56,4 +56,5 @@ tier: 2
 | LC 10 Regular Expression Matching | Hard | 兩字串比對，`*` 的三路轉移 | ✅ 已解 |
 | LC 62 Unique Paths | Medium | Grid path 基礎 | 未做 |
 | LC 312 Burst Balloons | Hard | 區間 DP，枚舉「最後戳的」讓子問題獨立 | ✅ 已解 |
-| LC 2463 Minimum Total Distance Traveled | Hard | 線性指派 + non-crossing + 枚舉 k | 🕐 已學觀念，回家獨立寫 |
+| LC 2463 Minimum Total Distance Traveled | Hard | 線性指派 + non-crossing + 枚舉 k | ✅ 已解 |
+| LC 1478 Allocate Mailboxes | Hard | 線性指派 + median 預處理 + O(1) 遞推 | ✅ 已解（觀念獨立，debug base case 花 20 min） |

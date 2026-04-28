@@ -74,6 +74,8 @@ dp[i][j] = min over k in [0, min(cap_j, i)] of:
 
 **邊界：** 枚舉 `k` 存取 `A[i-k-1]` 時，檢查實際 index：`if i-k-1 < 0: break`（不是檢查 `i-k`）
 
+**Base case 三件套：** 寫完 dp 陣列後立刻檢查 `dp[0][0]`、`dp[0][j]`、`dp[i][0]` 三類。最易漏：`dp[0][0] = 0`（空集合配空資源 = 0 成本）
+
 **原型題**
 - **LC 2463**（Min Total Distance Traveled）：robots↔factories，有 capacity。O(n²·m)
 - **LC 1478**（Allocate Mailboxes）：houses 分給 k 個 mailbox，**B_j 位置自己決定** → segCost(l,r) = 段內中位數距離和
