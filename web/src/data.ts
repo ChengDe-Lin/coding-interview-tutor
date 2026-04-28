@@ -53,6 +53,18 @@ const cheatsheetMd = import.meta.glob('../../cheatsheets/master.md', {
   eager: true,
 }) as Record<string, string>
 
+const decisionTreeMd = import.meta.glob('../../cheatsheets/pattern_decision_tree.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>
+
+const exampleMds = import.meta.glob('../../cheatsheets/examples/*.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>
+
 const roadmapMd = import.meta.glob('../../roadmap.md', {
   query: '?raw',
   import: 'default',
@@ -143,6 +155,50 @@ export function getCheatSheet(): string {
   if (!raw) return ''
   const { content } = parseFrontmatter(raw)
   return content
+}
+
+// --- Decision tree ---
+
+export function getDecisionTree(): string {
+  const raw = Object.values(decisionTreeMd)[0]
+  if (!raw) return ''
+  const { content } = parseFrontmatter(raw)
+  return content
+}
+
+// --- Pattern examples ---
+
+export interface ExampleFile {
+  slug: string
+  name: string
+  content: string
+}
+
+const exampleNameMap: Record<string, string> = {
+  fundamentals: '基礎 (Two Pointers, BS, SW)',
+  stack_queue_heap: 'Stack / Queue / Heap',
+  dp: 'Dynamic Programming',
+  graph: 'Graph',
+  advanced: '進階技巧',
+  linked_list: 'Linked List',
+  tier3_advanced: 'Tier 3 — 睡前故事',
+}
+
+export function getExamples(): ExampleFile[] {
+  return Object.entries(exampleMds)
+    .map(([path, raw]) => {
+      const { content } = parseFrontmatter(raw)
+      const slug = slugFromPath(path)
+      return {
+        slug,
+        name: exampleNameMap[slug] || nameFromSlug(slug),
+        content,
+      }
+    })
+    .sort((a, b) => {
+      const order = Object.keys(exampleNameMap)
+      return order.indexOf(a.slug) - order.indexOf(b.slug)
+    })
 }
 
 // --- Roadmap parsing ---

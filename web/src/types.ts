@@ -56,5 +56,7 @@ export type Page =
   | { type: 'pattern'; slug: string }
   | { type: 'data-structure'; slug: string }
   | { type: 'cheatsheet' }
+  | { type: 'decision-tree' }
+  | { type: 'example'; slug: string }
   | { type: 'confusion-ledger' }
   | { type: 'deep-dive'; slug: string }

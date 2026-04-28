@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { Page } from './types'
-import { getPatterns, getDataStructures, getDeepDives, getStats } from './data'
+import { getPatterns, getDataStructures, getDeepDives, getExamples, getDecisionTree, getStats } from './data'
 import Dashboard from './pages/Dashboard'
 import Roadmap from './pages/Roadmap'
 import ArticleView from './pages/ArticleView'
@@ -13,12 +13,14 @@ export default function App() {
   const patterns = getPatterns()
   const dataStructures = getDataStructures()
   const deepDives = getDeepDives()
+  const examples = getExamples()
   const stats = getStats()
 
   const navSections = [
     { label: 'Dashboard', page: { type: 'dashboard' } as Page },
     { label: 'Roadmap', page: { type: 'roadmap' } as Page },
     { label: 'Cheat Sheet', page: { type: 'cheatsheet' } as Page },
+    { label: 'Decision Tree', page: { type: 'decision-tree' } as Page },
     { label: 'Confusion Ledger', page: { type: 'confusion-ledger' } as Page },
   ]
 
@@ -52,6 +54,27 @@ export default function App() {
       }
       case 'cheatsheet':
         return <CheatSheet />
+      case 'decision-tree': {
+        const content = getDecisionTree()
+        return (
+          <ArticleView
+            content={content}
+            name="Pattern 識別速查"
+            onBack={() => setPage({ type: 'dashboard' })}
+          />
+        )
+      }
+      case 'example': {
+        const ex = examples.find((e) => e.slug === page.slug)
+        if (!ex) return <div className="empty-state">Example not found</div>
+        return (
+          <ArticleView
+            content={ex.content}
+            name={ex.name}
+            onBack={() => setPage({ type: 'decision-tree' })}
+          />
+        )
+      }
       case 'confusion-ledger':
         return <ConfusionLedger />
       case 'deep-dive': {
@@ -91,6 +114,25 @@ export default function App() {
               {item.label}
             </button>
           ))}
+
+          {examples.length > 0 && (
+            <>
+              <div className="nav-section-header">Pattern Examples</div>
+              {examples.map((e) => (
+                <button
+                  key={e.slug}
+                  className={`nav-item nav-item-sub ${
+                    page.type === 'example' && page.slug === e.slug
+                      ? 'active'
+                      : ''
+                  }`}
+                  onClick={() => setPage({ type: 'example', slug: e.slug })}
+                >
+                  {e.name}
+                </button>
+              ))}
+            </>
+          )}
 
           {patterns.length > 0 && (
             <>
