@@ -66,6 +66,21 @@ export default function Dashboard({ stats, onNavigate }: Props) {
         ) : null}
       </div>
 
+      <div className="dashboard-callout">
+        <div>
+          <div className="dashboard-callout-title">零碎時間複習</div>
+          <div className="dashboard-callout-text">
+            先刷最老的 confusion item，再看目前不穩的 pattern cue / trap。
+          </div>
+        </div>
+        <button
+          className="dashboard-callout-btn"
+          onClick={() => onNavigate({ type: 'quick-review' })}
+        >
+          Open Quick Review
+        </button>
+      </div>
+
       {/* Review Recommendations */}
       <div className="section-title">需要複習</div>
       <div className="review-list">

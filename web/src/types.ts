@@ -50,8 +50,21 @@ export interface ConfusionEntry {
   reviewAdvice: string
 }
 
+export interface ReviewPatternCard {
+  pattern: string
+  slug: string | null
+  status: PatternStatus
+  lastStudied: string
+  problemCount: number
+  noteLink: string | null
+  recognitionSignals: string[]
+  traps: string[]
+  quickOps: string[]
+}
+
 export type Page =
   | { type: 'dashboard' }
+  | { type: 'quick-review' }
   | { type: 'roadmap' }
   | { type: 'pattern'; slug: string }
   | { type: 'data-structure'; slug: string }

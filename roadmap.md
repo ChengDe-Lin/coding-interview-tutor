@@ -30,11 +30,11 @@ last_updated: 2026-03-27
 | Dynamic Programming (2D / Interval) | 學習中 | 2026-04-03 | 4 | [筆記](patterns/dp_2d.md) |
 | Union Find | 學習中 | 2026-03-28 | 1 | [筆記](patterns/union_find.md) |
 | Trie | 學習中 | 2026-03-30 | 1 | [筆記](patterns/trie.md) |
-| Topological Sort | 學習中 | 2026-03-30 | 1 | [筆記](patterns/topological_sort.md) |
-| Segment Tree / BIT | 學習中 | 2026-04-06 | 2 | [筆記](patterns/segment_tree.md) |
+| Topological Sort | 需複習 | 2026-05-02 | 2 | [筆記](patterns/topological_sort.md) |
+| Segment Tree / BIT | 學習中 | 2026-05-09 | 3 | [筆記](patterns/segment_tree.md) |
 | Divide and Conquer | 未開始 | — | 0 | — |
 | Bit Manipulation | 學習中 | 2026-04-11 | 4 | [筆記](patterns/bit_manipulation.md) |
-| Linked List Techniques | 未開始 | — | 0 | — |
+| Linked List Techniques | 學習中 | 2026-05-06 | 1 | [筆記](patterns/linked_list.md) |
 
 ## Tier 3 — 了解即可
 

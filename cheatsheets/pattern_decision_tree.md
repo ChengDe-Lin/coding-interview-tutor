@@ -4,44 +4,44 @@
 
 ## 速查表 — 看到什麼 → 想什麼
 
-| 看到什麼 | 想什麼 Pattern | 例 |
-|---------|---------------|-----|
-| Sorted array + 找 pair / 比兩端 | **Two Pointers — 相向** | LC 167 |
-| Linked list cycle / 找中點 | **Two Pointers — 快慢** | LC 142 |
-| In-place 改 array、O(1) space | **Two Pointers — 讀寫** | LC 283 |
-| Sorted array 找值/邊界 | **Binary Search** | LC 34 |
-| 「最小化最大值」/「最大化最小值」 | **BS on Answer** | LC 1011 |
-| 連續子串 + 最長/最短/滿足條件 | **Sliding Window** | LC 76 |
-| 連續子陣列 sum（可含負數） | **Prefix Sum + Hash Map** | LC 560 |
-| 找 complement / 配對 / 頻率統計 | **Hash Map** | LC 1, 49 |
-| 最短路徑 / 最少步數（unweighted） | **BFS** | LC 200 |
-| 子樹資訊 / 所有可能 / 連通性 | **DFS** | LC 200 |
-| 前/後第一個比我大（小）的元素 | **Monotonic Stack** | LC 84 |
-| Monotonic Stack + 滑窗/過期淘汰 | **Monotonic Deque** | LC 239, 862 |
-| 反覆取最大/最小、merge K sorted | **Heap / PQ** | LC 23 |
-| 窮舉所有排列/組合/子集 | **Backtracking** | LC 46 |
-| Interval merge / 排序後 greedy | **Sorting + Greedy** | LC 56 |
-| 最少/最多/方法數 + 最佳子結構 | **DP 1D** | LC 300 |
-| 兩字串比對 / Grid 路徑 / 區間最佳化 | **DP 2D / Interval** | LC 72, 312 |
-| 兩組東西配對 + 一維順序 + capacity | **線性指派 DP** | LC 1478 |
-| 能不能湊出 target / 背包 | **0/1 Knapsack** | LC 416 |
-| 動態合併 + 反覆查連通 | **Union Find** | LC 684 |
-| Prefix matching / autocomplete | **Trie** | LC 208 |
-| DAG + 依賴順序 / cycle detection | **Topological Sort** | LC 210 |
-| Range query + point update 反覆 | **Segment Tree / BIT** | LC 307 |
-| 切一半 + merge、count inversions | **Divide and Conquer** | LC 315 |
-| 加權圖最短距離 | **Shortest Path** | LC 743 |
-| 兩人輪流、先手必勝？ | **Game Theory** | LC 486 |
-| 所有 subarray 的 XX 總和 | **Contribution Counting** | LC 907 |
-| N ≤ 40 + 子集搜索 | **Meet in the Middle** | LC 1755 |
-| 2D 平面事件 / 天際線 | **Line Sweep** | LC 218 |
-| 狀態空間搜索（沒給圖） | **Implicit Graph + BFS** | LC 752 |
-| 子字串匹配 / 重複子串 | **Rolling Hash** | LC 187, 1044 |
-| 多次區間加值 + 最後查一次 | **差分陣列** | LC 1109 |
+| 看到什麼 | 想什麼 Pattern | 代表題（含題意） |
+|---------|---------------|------------------|
+| Sorted array + 找 pair / 比兩端 | **Two Pointers — 相向** | **LC 167** Two Sum II（已排序找兩數和為 target） |
+| Linked list cycle / 找中點 | **Two Pointers — 快慢** | **LC 142** Linked List Cycle II（找環的入口節點） |
+| In-place 改 array、O(1) space | **Two Pointers — 讀寫** | **LC 283** Move Zeroes（把所有 0 移到陣列尾） |
+| Sorted array 找值/邊界 | **Binary Search** | **LC 34** Find First/Last Position（找 target 的左右邊界） |
+| 「最小化最大值」/「最大化最小值」 | **BS on Answer** | **LC 1011** Capacity to Ship（D 天內運完，最小船容量） |
+| 連續子串 + 最長/最短/滿足條件 | **Sliding Window** | **LC 76** Min Window Substring（含 t 所有字元的最短子串） |
+| 連續子陣列 sum（可含負數） | **Prefix Sum + Hash Map** | **LC 560** Subarray Sum Equals K（和為 k 的子陣列數） |
+| 找 complement / 配對 / 頻率統計 | **Hash Map** | **LC 1** Two Sum / **LC 49** Group Anagrams |
+| 最短路徑 / 最少步數（unweighted） | **BFS** | **LC 200** Number of Islands（grid 連通塊計數） |
+| 子樹資訊 / 所有可能 / 連通性 | **DFS** | **LC 200** Number of Islands（DFS 版） |
+| 前/後第一個比我大（小）的元素 | **Monotonic Stack** | **LC 84** Largest Rectangle Histogram（直方圖最大矩形） |
+| Monotonic Stack + 滑窗/過期淘汰 | **Monotonic Deque** | **LC 239** Sliding Window Max / **LC 862** Shortest Subarray Sum ≥ K |
+| 反覆取最大/最小、merge K sorted | **Heap / PQ** | **LC 23** Merge k Sorted Lists |
+| 窮舉所有排列/組合/子集 | **Backtracking** | **LC 46** Permutations |
+| Interval merge / 排序後 greedy | **Sorting + Greedy** | **LC 56** Merge Intervals |
+| 最少/最多/方法數 + 最佳子結構 | **DP 1D** | **LC 300** Longest Increasing Subsequence |
+| 兩字串比對 / Grid 路徑 / 區間最佳化 | **DP 2D / Interval** | **LC 72** Edit Distance / **LC 312** Burst Balloons |
+| 兩組東西配對 + 一維順序 + capacity | **線性指派 DP** | **LC 1478** Allocate Mailboxes（房子分給 k 個信箱，最小總距離） |
+| 能不能湊出 target / 背包 | **0/1 Knapsack** | **LC 416** Partition Equal Subset Sum |
+| 動態合併 + 反覆查連通 | **Union Find** | **LC 684** Redundant Connection（找形成 cycle 的多餘邊） |
+| Prefix matching / autocomplete | **Trie** | **LC 208** Implement Trie |
+| DAG + 依賴順序 / cycle detection | **Topological Sort** | **LC 210** Course Schedule II（修課順序） |
+| Range query + point update 反覆 | **Segment Tree / BIT** | **LC 307** Range Sum Query Mutable |
+| 切一半 + merge、count inversions | **Divide and Conquer** | **LC 315** Count of Smaller Numbers After Self |
+| 加權圖最短距離 | **Shortest Path** | **LC 743** Network Delay Time（Dijkstra） |
+| 兩人輪流、先手必勝？ | **Game Theory** | **LC 486** Predict the Winner |
+| 所有 subarray 的 XX 總和 | **Contribution Counting** | **LC 907** Sum of Subarray Minimums |
+| N ≤ 40 + 子集搜索 | **Meet in the Middle** | **LC 1755** Closest Subsequence Sum |
+| 2D 平面事件 / 天際線 | **Line Sweep** | **LC 218** The Skyline Problem |
+| 狀態空間搜索（沒給圖） | **Implicit Graph + BFS** | **LC 752** Open the Lock（4 位轉盤鎖最少轉幾次） |
+| 子字串匹配 / 重複子串 | **Rolling Hash** | **LC 187** Repeated DNA / **LC 1044** Longest Duplicate Substring |
+| 多次區間加值 + 最後查一次 | **差分陣列** | **LC 1109** Corporate Flight Bookings |
 | 值域 10^9 但元素少 | **Coordinate Compression** | — |
 | 正面太難 → 反面算 | **取補集** | — |
-| Linked list 操作（merge / reverse / copy） | **Linked List Techniques** | LC 21, 206, 25 |
-| Design class, O(1) 操作 | **設計題技巧** | LC 146, 895 |
+| Linked list 操作（merge / reverse / copy） | **Linked List Techniques** | **LC 21** Merge Two Sorted Lists / **LC 206** Reverse Linked List / **LC 25** Reverse k-Group |
+| Design class, O(1) 操作 | **設計題技巧** | **LC 146** LRU Cache / **LC 895** Max Freq Stack |
 
 ---
 

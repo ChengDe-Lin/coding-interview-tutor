@@ -6,6 +6,7 @@ import type {
   RoadmapTier,
   RoadmapEntry,
   ConfusionEntry,
+  ReviewPatternCard,
   PatternStatus,
   ConfusionStatus,
 } from './types'
@@ -95,6 +96,38 @@ function extractH1(content: string): string | null {
   return match ? match[1].trim() : null
 }
 
+function noteSlugFromLink(link: string | null): string | null {
+  if (!link) return null
+  const match = link.match(/([^/]+)\.md$/)
+  return match ? match[1] : null
+}
+
+function getSectionLines(content: string, heading: string): string[] {
+  const lines = content.split('\n')
+  const start = lines.findIndex((line) => line.trim() === `## ${heading}`)
+  if (start === -1) return []
+
+  const section: string[] = []
+  for (let i = start + 1; i < lines.length; i += 1) {
+    const line = lines[i]
+    if (/^##\s+/.test(line)) break
+    section.push(line)
+  }
+  return section
+}
+
+function extractBulletItems(content: string, heading: string, limit = 4): string[] {
+  return getSectionLines(content, heading)
+    .map((line) => line.trim())
+    .filter((line) => line.startsWith('- '))
+    .map((line) => line.slice(2).trim())
+    .slice(0, limit)
+}
+
+function sortableDate(date: string): string {
+  return /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : '9999-99-99'
+}
+
 // --- Pattern files ---
 
 export function getPatterns(): PatternFile[] {
@@ -176,6 +209,7 @@ export interface ExampleFile {
 
 const exampleNameMap: Record<string, string> = {
   fundamentals: '基礎 (Two Pointers, BS, SW)',
+  bit_manipulation: 'Bit Manipulation',
   stack_queue_heap: 'Stack / Queue / Heap',
   dp: 'Dynamic Programming',
   graph: 'Graph',
@@ -291,6 +325,33 @@ export function getConfusionEntries(): ConfusionEntry[] {
       reviewAdvice: cells[5] || '',
     }
   })
+}
+
+export function getReviewPatterns(limit = 6): ReviewPatternCard[] {
+  const patternMap = new Map(getPatterns().map((pattern) => [pattern.slug, pattern]))
+
+  return getRoadmap()
+    .flatMap((tier) => tier.entries)
+    .filter((entry) => entry.status === '需複習' || entry.status === '學習中')
+    .sort((a, b) => sortableDate(a.lastStudied).localeCompare(sortableDate(b.lastStudied)))
+    .slice(0, limit)
+    .map((entry) => {
+      const slug = noteSlugFromLink(entry.noteLink)
+      const note = slug ? patternMap.get(slug) : undefined
+      const content = note?.content ?? ''
+
+      return {
+        pattern: entry.pattern,
+        slug,
+        status: entry.status,
+        lastStudied: entry.lastStudied,
+        problemCount: entry.problemCount,
+        noteLink: entry.noteLink,
+        recognitionSignals: extractBulletItems(content, '識別信號'),
+        traps: extractBulletItems(content, '常見陷阱'),
+        quickOps: extractBulletItems(content, '常用操作'),
+      }
+    })
 }
 
 // --- Aggregated stats ---

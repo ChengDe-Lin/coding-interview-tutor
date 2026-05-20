@@ -113,18 +113,20 @@ def predictTheWinner(nums: list[int]) -> bool:
 **關鍵洞察**：反向思考——枚舉區間內**最後**被戳破的氣球 `k`，這樣 `k` 左右兩邊的子問題就互相獨立（因為 `k` 在整個區間都存在）。邊界用虛擬氣球 `nums[-1] = nums[n] = 1`。
 
 ```python
+from functools import lru_cache
+
 def maxCoins(nums: list[int]) -> int:
     nums = [1] + nums + [1]
-    n = len(nums)
-    dp = [[0] * n for _ in range(n)]
-    for length in range(2, n):
-        for left in range(n - length):
-            right = left + length
-            for k in range(left + 1, right):
-                dp[left][right] = max(
-                    dp[left][right],
-                    dp[left][k] + dp[k][right]
-                    + nums[left] * nums[k] * nums[right]
-                )
-    return dp[0][n - 1]
+
+    @lru_cache(None)
+    def dp(l, r):
+        if l > r:
+            return 0
+        res = 0
+        for i in range(l, r + 1):
+            coins = nums[l - 1] * nums[i] * nums[r + 1]
+            res = max(res, coins + dp(l, i - 1) + dp(i + 1, r))
+        return res
+
+    return dp(1, len(nums) - 2)
 ```

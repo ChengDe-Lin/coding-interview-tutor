@@ -4,6 +4,8 @@
 
 ### LC 167. Two Sum II - Input Array Is Sorted
 
+**範例：** `numbers = [2,7,11,15], target = 9` → `[1, 2]`（2+7=9，1-indexed）
+
 給定一個**已排序**的整數陣列 `numbers` 和一個目標值 `target`，找出兩個數使其和等於 `target`。回傳 1-indexed 的位置。保證恰好有一組解。
 
 **關鍵洞察**：排序保證了左右指標的單調性——和太大就縮右、和太小就推左，每步排除一行/列。
@@ -26,6 +28,8 @@ def twoSum(numbers: list[int], target: int) -> list[int]:
 ## Two Pointers — 快慢指標
 
 ### LC 142. Linked List Cycle II
+
+**範例：** `head = 3→2→0→-4→(連回 node 2)` → 回傳 val=2 的節點（環入口）
 
 給定一個 linked list 的 head，判斷是否有 cycle。若有，回傳 cycle 開始的節點；若無，回傳 `None`。
 
@@ -57,6 +61,8 @@ def detectCycle(head: ListNode) -> ListNode:
 
 ### LC 283. Move Zeroes
 
+**範例：** `nums = [0,1,0,3,12]` → `[1,3,12,0,0]`（in-place）
+
 給定一個整數陣列 `nums`，將所有 `0` 移到陣列末尾，同時保持非零元素的相對順序。必須 in-place 操作。
 
 **關鍵洞察**：write 指標指向下一個非零值該放的位置，read 指標掃描全陣列。非零值寫到 write 位置後 write 前進，最後 write 之後全補零。
@@ -77,6 +83,8 @@ def moveZeroes(nums: list[int]) -> None:
 ## Binary Search
 
 ### LC 34. Find First and Last Position of Element in Sorted Array
+
+**範例：** `nums = [5,7,7,8,8,10], target = 8` → `[3, 4]`；`target = 6` → `[-1, -1]`
 
 給定一個**遞增排序**的整數陣列 `nums` 和目標值 `target`，找出 `target` 在陣列中的第一個和最後一個位置。若不存在回傳 `[-1, -1]`。要求 O(log n)。
 
@@ -117,6 +125,8 @@ def searchRange(nums: list[int], target: int) -> list[int]:
 
 ### LC 1011. Capacity To Ship Packages Within D Days
 
+**範例：** `weights = [1,2,3,4,5,6,7,8,9,10], days = 5` → `15`（船容量 15 時可以 5 天內運完：[1,2,3,4,5][6,7][8][9][10]）
+
 給定一個重量陣列 `weights` 和天數 `days`，貨物必須按順序裝船。求能在 `days` 天內運完所有貨物的**最小船載重量**。
 
 **關鍵洞察**：答案具有單調性——載重越大，需要天數越少。在 `[max(weights), sum(weights)]` 上二分搜尋，用 greedy 驗證給定載重是否能在 `days` 天內運完。
@@ -147,6 +157,8 @@ def shipWithinDays(weights: list[int], days: int) -> int:
 ## Sliding Window
 
 ### LC 76. Minimum Window Substring
+
+**範例：** `s = "ADOBECODEBANC", t = "ABC"` → `"BANC"`
 
 給定字串 `s` 和 `t`，找出 `s` 中包含 `t` 所有字元的**最短子字串**。若不存在回傳空字串。`t` 中可能有重複字元，窗口內必須涵蓋所有重複次數。
 
@@ -180,6 +192,8 @@ def minWindow(s: str, t: str) -> str:
 
 ### LC 560. Subarray Sum Equals K
 
+**範例：** `nums = [1,1,1], k = 2` → `2`（[1,1] 出現兩次：[0:2] 和 [1:3]）
+
 給定一個整數陣列 `nums` 和整數 `k`，找出陣列中和等於 `k` 的**連續子陣列**的總數。陣列可能含負數。
 
 **關鍵洞察**：這題同時是 **Prefix Sum** 和 **Hash Map** 的經典組合。若 `prefix[j] - prefix[i] == k`，則 `nums[i+1..j]` 的和為 `k`。用 hash map 記錄每個 prefix sum 出現的次數，掃描時查詢 `prefix - k` 出現幾次即可。O(n) 時間、O(n) 空間。**先查再更新**，避免用到自己。初始化 `{0: 1}`。
@@ -204,6 +218,8 @@ def subarraySum(nums: list[int], k: int) -> int:
 ## Hash Map — 配對問題
 
 ### LC 1. Two Sum
+
+**範例：** `nums = [2,7,11,15], target = 9` → `[0, 1]`（nums[0]+nums[1]=2+7=9）
 
 給定一個整數陣列 `nums` 和整數 `target`，找出**兩個**加起來等於 `target` 的元素的 index。保證只有一組解，同一元素不能用兩次。
 

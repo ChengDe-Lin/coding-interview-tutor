@@ -6,6 +6,7 @@ import Roadmap from './pages/Roadmap'
 import ArticleView from './pages/ArticleView'
 import CheatSheet from './pages/CheatSheet'
 import ConfusionLedger from './pages/ConfusionLedger'
+import QuickReview from './pages/QuickReview'
 
 export default function App() {
   const [page, setPage] = useState<Page>({ type: 'dashboard' })
@@ -18,6 +19,7 @@ export default function App() {
 
   const navSections = [
     { label: 'Dashboard', page: { type: 'dashboard' } as Page },
+    { label: 'Quick Review', page: { type: 'quick-review' } as Page },
     { label: 'Roadmap', page: { type: 'roadmap' } as Page },
     { label: 'Cheat Sheet', page: { type: 'cheatsheet' } as Page },
     { label: 'Decision Tree', page: { type: 'decision-tree' } as Page },
@@ -28,6 +30,8 @@ export default function App() {
     switch (page.type) {
       case 'dashboard':
         return <Dashboard stats={stats} onNavigate={setPage} />
+      case 'quick-review':
+        return <QuickReview onNavigate={setPage} />
       case 'roadmap':
         return <Roadmap onNavigate={setPage} />
       case 'pattern': {
